@@ -126565,6 +126565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxInventorySize: 30
   itemList: []
+  itemListBase: {fileID: 11400000, guid: 2730d7b6e075837499e599159e54ffa7, type: 2}
   shopData: {fileID: 11400000, guid: 53202fea4f3bc0a40829e9c2d34d4477, type: 2}
   minItemsAmount: 4
 --- !u!1 &1678417486
@@ -146390,6 +146391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxInventorySize: 10
   itemList: []
+  itemListBase: {fileID: 11400000, guid: 2730d7b6e075837499e599159e54ffa7, type: 2}
   materialStash: []
 --- !u!1 &2138892403
 GameObject:
