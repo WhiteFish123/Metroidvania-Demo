@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory_Base : MonoBehaviour
+public class Inventory_Base : MonoBehaviour,ISaveable
 {
     protected Player player;
     public event Action OnInventoryChange;
@@ -91,4 +91,14 @@ public class Inventory_Base : MonoBehaviour
     }
 
     public void TriggerUpdateUI() => OnInventoryChange?.Invoke();
+
+    public virtual void LoadData(GameData data)
+    {
+        
+    }
+
+    public virtual void SaveData(ref GameData data)
+    {
+        
+    }
 }
