@@ -1,17 +1,20 @@
 using System;
 using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 
 public class Inventory_Player : Inventory_Base
 {
     public event Action<int> OnQuickSlotUsed;
-    public int gold = 10000;
+    [SerializeField]private ItemListDataSO itemListBase;
 
     public List<Inventory_EquipmentSlot> equipList;
     public Inventory_Storage storage { get ; private set; }
 
     [Header("Quick Item Slots")]
     public Inventory_Item[] quickItems = new Inventory_Item[2];
+    [Header("Gold Info")]
+    public int gold = 10000;
 
     protected override void Awake()
     {
@@ -102,9 +105,43 @@ public class Inventory_Player : Inventory_Base
     override public void SaveData(ref GameData data)
     {
         data.gold = gold;
+        data.inventory.Clear();
+
+        foreach(var item in itemList)
+        {
+            if(item!=null&&item.itemData!=null)
+            {
+                string saveId=item.itemData.saveId;
+
+                if(data.inventory.ContainsKey(saveId)==false)
+                    data.inventory[saveId]=0;
+
+                data.inventory[saveId]+=item.stackSize;
+            }
+        }
+    
     }   
     override public void LoadData(GameData data)    
     {
         gold = data.gold;
+
+        foreach(var item in data.inventory)
+        {
+            string saveId = item.Key;
+            int stackSize = item.Value;
+            ItemDataSO itemData=itemListBase.GetItemData(saveId);
+            if(itemData==null)
+            {
+                Debug.Log($"Item not found in item list: {saveId}");
+                continue;
+            }
+            for(int i=0;i<stackSize;i++)
+            {
+                Inventory_Item itemToLoad=new Inventory_Item(itemData);
+                AddItem(itemToLoad);
+            }
+
+        }
+            TriggerUpdateUI();
     }
 }
