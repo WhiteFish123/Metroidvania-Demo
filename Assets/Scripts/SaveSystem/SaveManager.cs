@@ -7,12 +7,22 @@ using System.Linq;
 
 public class SaveManager : MonoBehaviour
 {
+    public static SaveManager instance { get; private set; }
     private FileDataHandler dataHandler;
     private List<ISaveable> allSaveables;
     private GameData gameData;
     [SerializeField] private string fileName="GameData.json";
     [SerializeField] private bool encrpyData=true;
 
+    private void Awake()
+    {
+        if(instance!=null)
+        {
+            Debug.LogError("Found more than one SaveManager in the scene.");
+            return;
+        }
+        instance=this;
+    }
     private IEnumerator Start()
     {
         Debug.Log(Application.persistentDataPath);
@@ -46,6 +56,7 @@ public class SaveManager : MonoBehaviour
         dataHandler.SaveData(gameData);
     }
 
+    public GameData GetGameData()=>gameData;
     [ContextMenu("Delete save data")]
     public void DeleteData()
     {

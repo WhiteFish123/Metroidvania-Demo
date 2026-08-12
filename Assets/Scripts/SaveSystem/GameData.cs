@@ -17,6 +17,8 @@ public class GameData
     public SerializableDictionary<string,bool>skillTreeUI;//技能的id->技能是否解锁
     public SerializableDictionary<SkillType,SkillUpgradeType>skillUpgrades;//技能的类型->技能的升级类型
 
+    public Vector3 savedCheckpoint;
+
     public GameData()
     {
         inventory=new SerializableDictionary<string,int>();
