@@ -1,14 +1,22 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
-
 public class Object_Waypoint : MonoBehaviour
 {
     [SerializeField] private string transferToScene;
     [Space]
-    public RespawnType waypointType;
+    [SerializeField] private RespawnType waypointType;
     [SerializeField] private RespawnType conntedWaypoint;
+    [SerializeField]private Transform respawnPoint;
     [SerializeField]private bool canBeTriggered=true;
+
+    public void SetCanBeTriggered(bool canBeTriggered)=>this.canBeTriggered=canBeTriggered;
+    public Vector3 GetPosition()
+    {
+        return respawnPoint==null?transform.position:respawnPoint.position;
+    }
+
+    public RespawnType GetWaypointType()=>waypointType;
 
     private void OnValidate()
     {
@@ -26,7 +34,7 @@ public class Object_Waypoint : MonoBehaviour
         if(canBeTriggered==false)
             return;
         SaveManager.instance.SaveData();
-        SceneManager.LoadScene(transferToScene);
+        GameManager.instance.ChangeScene(transferToScene,conntedWaypoint);
     }
     void OnTriggerExit2D(Collider2D other)
     {
