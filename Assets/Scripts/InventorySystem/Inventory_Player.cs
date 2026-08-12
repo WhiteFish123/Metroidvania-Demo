@@ -105,7 +105,7 @@ public class Inventory_Player : Inventory_Base
     {
         data.gold = gold;
         data.inventory.Clear();
-        data.EquipedItems.Clear();
+        data.equipedItems.Clear();
         foreach(var item in itemList)
         {
             if(item!=null&&item.itemData!=null)
@@ -121,7 +121,7 @@ public class Inventory_Player : Inventory_Base
         foreach(var slot in equipList)
         {
             if(slot.HasItem())
-                data.EquipedItems[slot.equipedItem.itemData.saveId]=slot.slotType;
+                data.equipedItems[slot.equipedItem.itemData.saveId]=slot.slotType;
         }
     
     }   
@@ -150,7 +150,7 @@ public class Inventory_Player : Inventory_Base
 
         }
 
-        foreach(var entry in data.EquipedItems)
+        foreach(var entry in data.equipedItems)
         {
             string saveId = entry.Key;
             ItemType loadedSlotType = entry.Value;

@@ -21,6 +21,9 @@ public class Skill_Base : MonoBehaviour
         damageScaleData = new DamageScaleData();
     }
 
+    public SkillType GetSkillType() => skillType;
+    public SkillUpgradeType GetUpgrade() => upgradeType;
+
     public virtual void TryUseSkill()
     {
 
