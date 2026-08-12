@@ -48,7 +48,7 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private void SaveData()
+    public void SaveData()
     {
         foreach(var saveable in allSaveables)
             saveable.SaveData(ref gameData);

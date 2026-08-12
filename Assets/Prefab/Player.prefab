@@ -472,12 +472,12 @@ GameObject:
   - component: {fileID: 4513476641289570102}
   - component: {fileID: 7120214048419378245}
   - component: {fileID: 9148459993743023163}
-  - component: {fileID: 3096574771589553439}
   - component: {fileID: 7021897015593389872}
   - component: {fileID: 3222654724862393096}
   - component: {fileID: 3097563186272215918}
   - component: {fileID: 1050129719770367435}
   - component: {fileID: 6828600989365847694}
+  - component: {fileID: 7117940523053775035}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -678,26 +678,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   counterRecovery: 0.4
---- !u!114 &3096574771589553439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4810702304130202191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7346c8aa3e5688649be91774eaba4052, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHealth: 0
-  regenInterval: 1
-  canRegenerateHealth: 1
-  knockbackPower: {x: 1.5, y: 2.5}
-  heavyKnockbackPower: {x: 7, y: 7}
-  knockbackDuration: 0.2
-  heavyKnockbackDuration: 0.5
-  heavyDamageThreshold: 0.3
 --- !u!114 &7021897015593389872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -838,6 +818,26 @@ MonoBehaviour:
   maxRarityAmount: 1200
   maxItemsToDrop: 3
   chanceToLooseItem: 90
+--- !u!114 &7117940523053775035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4810702304130202191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aa57523dd53a154ab4f9e50bfece883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  regenInterval: 1
+  canRegenerateHealth: 1
+  knockbackPower: {x: 1.5, y: 2.5}
+  heavyKnockbackPower: {x: 7, y: 7}
+  knockbackDuration: 0.2
+  heavyKnockbackDuration: 0.5
+  heavyDamageThreshold: 0.3
 --- !u!1 &5015400828170819046
 GameObject:
   m_ObjectHideFlags: 0
