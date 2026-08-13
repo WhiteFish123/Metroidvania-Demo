@@ -10,9 +10,10 @@ public class Object_Waypoint : MonoBehaviour
     [SerializeField]private Transform respawnPoint;
     [SerializeField]private bool canBeTriggered=true;
 
-    public void SetCanBeTriggered(bool canBeTriggered)=>this.canBeTriggered=canBeTriggered;
-    public Vector3 GetPosition()
+    public Vector3 GetPositionAndSetTriggerFalse()
     {
+
+        canBeTriggered=false;
         return respawnPoint==null?transform.position:respawnPoint.position;
     }
 

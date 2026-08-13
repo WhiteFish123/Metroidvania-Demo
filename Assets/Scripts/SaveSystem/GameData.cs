@@ -17,7 +17,11 @@ public class GameData
     public SerializableDictionary<string,bool>skillTreeUI;//技能的id->技能是否解锁
     public SerializableDictionary<SkillType,SkillUpgradeType>skillUpgrades;//技能的类型->技能的升级类型
 
-    public Vector3 savedCheckpoint;
+    public SerializableDictionary<string,bool>unlockedCheckpoints;//检查点的id->是否解锁
+    public SerializableDictionary<string,Vector3>inScenePortals;//传送的id->传送的位置
+
+    public string portalDestinationSceneName;
+    public bool returningFormTown;
 
     public GameData()
     {
@@ -29,5 +33,8 @@ public class GameData
 
         skillTreeUI=new SerializableDictionary<string,bool>();
         skillUpgrades=new SerializableDictionary<SkillType,SkillUpgradeType>();
+
+        unlockedCheckpoints=new SerializableDictionary<string,bool>();
+        inScenePortals=new SerializableDictionary<string,Vector3>();
     }
 }
