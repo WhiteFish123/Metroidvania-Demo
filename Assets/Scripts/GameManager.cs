@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour,ISaveable
     public static GameManager instance;
     private Vector3 lastPlayerPosition;//保存上次的死亡地点
 
-    private string lastScenePlayed;
+    private string lastScenePlayed="Level_0";
 
     private void Awake()
     {
@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour,ISaveable
     public void ChangeScene(string sceneName,RespawnType respawnType)
     {
         SaveManager.instance.SaveData();
+        Time.timeScale=1;
         StartCoroutine(ChangeSceneCo(sceneName,respawnType));
     }
 
@@ -46,10 +47,16 @@ public class GameManager : MonoBehaviour,ISaveable
         SceneManager.LoadScene(sceneName);
         yield return new WaitForSeconds(.2f);
 
+        Player player=Player.instance;
+
+        if(player==null)
+            yield break;
+
         Vector3 position=GetNewPlayerPosition(respawnType);//获取新的玩家位置
 
+
         if(position!=Vector3.zero)
-            Player.instance.TeleportPlayer(position);
+            player.TeleportPlayer(position);
     }
 
     private Vector3 GetNewPlayerPosition(RespawnType type)
