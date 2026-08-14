@@ -13,6 +13,7 @@ public class Object_Portal : MonoBehaviour,ISaveable
     [SerializeField]private bool canBeTriggered;//是否可以触发被传送走
 
     private string currentSceneName;//当前场景的名称
+    private string returnSceneName;
     private bool returningFormTown;//是否从城镇返回
 
     private void Awake()
@@ -26,14 +27,27 @@ public class Object_Portal : MonoBehaviour,ISaveable
     {
         isActive=true;
         transform.position=position;
+        SaveManager.instance.GetGameData().inScenePortals.Clear();
 
         if(facingDir==-1)
             transform.Rotate(0,180,0);
     }
+    public void DisableIfNeeded()
+    {
+        if(returningFormTown==false)//如果不是从城镇返回，就不管
+            return;
+        
+        SaveManager.instance.GetGameData().inScenePortals.Remove(currentSceneName);
+
+        isActive=false;
+        transform.position=new Vector3(9999,9999);//默认
+    }
 
     private void UseTeleport()
     {
-        
+        string destinationScene=InTown() ? returnSceneName : townSceneName;//如果在城镇，就返回到返回场景，否则就返回到城镇场景
+    
+        GameManager.instance.ChangeScene(destinationScene,RespawnType.Portal);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -64,20 +78,22 @@ public class Object_Portal : MonoBehaviour,ISaveable
         }
 
         returningFormTown=data.returningFormTown;
+        returnSceneName=data.portalDestinationSceneName;//返回场景的名称
     }
 
     public void SaveData(ref GameData data)
     {
-        if(isActive)
+        data.returningFormTown=InTown();
+
+        if(isActive&&InTown()==false)
         {
-            data.inScenePortals[currentSceneName]=transform.position
+            data.inScenePortals[currentSceneName]=transform.position;
+            data.portalDestinationSceneName=currentSceneName;
         }
         else
         {
             data.inScenePortals.Remove(currentSceneName);
         }
 
-        data.portalDestinationSceneName=currentSceneName;
-        data.returningFormTown=InTown();
     }
 }

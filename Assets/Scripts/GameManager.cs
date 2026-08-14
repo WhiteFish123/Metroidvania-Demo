@@ -23,13 +23,13 @@ public class GameManager : MonoBehaviour
     
     public void RestartScene()
     {
-        SaveManager.instance.SaveData();
 
         string sceneName=SceneManager.GetActiveScene().name;//获取当前场景的名称
-        ChangeScene(sceneName,RespawnType.None);//重新加载当前场景
+        ChangeScene(sceneName,RespawnType.NoneSpecific);//重新加载当前场景
     }
     public void ChangeScene(string sceneName,RespawnType respawnType)
     {
+        SaveManager.instance.SaveData();
         StartCoroutine(ChangeSceneCo(sceneName,respawnType));
     }
 
@@ -48,7 +48,19 @@ public class GameManager : MonoBehaviour
 
     private Vector3 GetNewPlayerPosition(RespawnType type)
     {
-        if(type==RespawnType.None)
+        if(type==RespawnType.Portal)
+        {
+            Object_Portal portal=Object_Portal.instance;//获取传送门
+
+            Vector3 position=portal.GetPosition();//获取传送门的位置
+
+            portal.SetTrigger(false);//设置传送门的触发器为false，防止重复触发
+            portal.DisableIfNeeded();//如果传送门是从城镇返回，就禁用传送门
+
+            return position;
+        }
+
+        if(type==RespawnType.NoneSpecific)
         {
             var data=SaveManager.instance.GetGameData();//获取游戏数据
             var checkpoints = FindObjectsByType<Object_Checkpoint>(FindObjectsSortMode.None);
