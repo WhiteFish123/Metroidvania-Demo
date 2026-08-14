@@ -13,7 +13,7 @@ public class Player_Health : Entity_Health
         base.Die();
         //Player.OnPlayerDeath?.Invoke();
 
-        GameManager.instance.SetLastDeathPosition(transform.position);//设置上次的死亡地点为当前玩家的位置
+        //GameManager.instance.SetLastPlayerPosition(transform.position);//设置上次的死亡地点为当前玩家的位置
         GameManager.instance.RestartScene();//重新加载当前场景
     }
 }

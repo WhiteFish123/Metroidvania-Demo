@@ -1752,7 +1752,7 @@ GameObject:
   - component: {fileID: 490019798}
   - component: {fileID: 490019797}
   m_Layer: 0
-  m_Name: SaveManager
+  m_Name: '***SaveManager***'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -23,6 +23,9 @@ public class GameData
     public string portalDestinationSceneName;
     public bool returningFormTown;
 
+    public string lastScenePlayed;
+    public Vector3 lastPlayerPosition;
+
     public GameData()
     {
         inventory=new SerializableDictionary<string,int>();

@@ -3,10 +3,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Linq;
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour,ISaveable
 {
     public static GameManager instance;
-    private Vector3 lastDeathPosition;//保存上次的死亡地点
+    private Vector3 lastPlayerPosition;//保存上次的死亡地点
+
+    private string lastScenePlayed;
 
     private void Awake()
     {
@@ -19,8 +21,12 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void SetLastDeathPosition(Vector3 position)=>lastDeathPosition=position;//设置上次的死亡地点
-    
+    //public void SetLastPlayerPosition(Vector3 position)=>lastPlayerPosition=position;//设置上次的死亡地点
+    public void ContinuePlay()
+    {
+        ChangeScene(lastScenePlayed,RespawnType.NoneSpecific);
+    }
+
     public void RestartScene()
     {
 
@@ -79,7 +85,7 @@ public class GameManager : MonoBehaviour
                 return Vector3.zero;
 
             return selectedPositions.
-                OrderBy(position => Vector3.Distance(position,lastDeathPosition))//根据当前可重生的位置和上次死亡的位置的距离排序
+                OrderBy(position => Vector3.Distance(position,lastPlayerPosition))//根据当前可重生的位置和上次死亡的位置的距离排序
                 .First();//返回距离最近的重生点
         }
         return GetWaypointPosition(type);
@@ -96,5 +102,28 @@ public class GameManager : MonoBehaviour
 
         }
         return Vector3.zero;
+    }
+
+    public void LoadData(GameData data)
+    {
+        lastScenePlayed=data.lastScenePlayed;
+        lastPlayerPosition=data.lastPlayerPosition;
+
+        if(string.IsNullOrEmpty(lastScenePlayed))
+            lastScenePlayed="Level_0";
+        
+        //自己新增的代码
+        if (lastPlayerPosition == Vector3.zero)
+        lastPlayerPosition = Vector3.one * 9999;  // 兜底：让所有检查点距离相等，取第一个
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        string currentScene=SceneManager.GetActiveScene().name;//获取当前场景的名称
+        if(currentScene=="MainMenu")
+            return;
+
+        data.lastPlayerPosition=Player.instance.transform.position;
+        data.lastScenePlayed=currentScene;
     }
 }
