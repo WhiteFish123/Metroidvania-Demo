@@ -8,7 +8,8 @@ public class UI_MainMenu : MonoBehaviour
     }
     public void PlayBTN()
     {
-        GameManager.instance.ContinuePlay();
+        AudioManager.instance.PlayerGlobalSFX("button_click");
+        //GameManager.instance.ContinuePlay();
     }
     public void QuitGameBTN()
     {
