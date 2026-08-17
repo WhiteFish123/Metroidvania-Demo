@@ -3,12 +3,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Linq;
+
 public class GameManager : MonoBehaviour,ISaveable
 {
     public static GameManager instance;
     private Vector3 lastPlayerPosition;//保存上次的死亡地点
 
     private string lastScenePlayed="Level_0";
+    private bool dataLoaded;
 
     private void Awake()
     {
@@ -42,10 +44,23 @@ public class GameManager : MonoBehaviour,ISaveable
 
     private IEnumerator ChangeSceneCo(string sceneName,RespawnType respawnType)
     {
-        //Fade
-        yield return new WaitForSeconds(1f);
+        UI_FadeScreen fadeScreen=FindFadeScreenUI();
+
+        fadeScreen.DoFadeOut();
+        yield return fadeScreen.fadeEffectCo;
+
         SceneManager.LoadScene(sceneName);
-        yield return new WaitForSeconds(.2f);
+
+        dataLoaded=false;
+        yield return null;
+
+        while(dataLoaded==false)
+        {
+            yield return null;
+        }
+        
+        fadeScreen=FindFadeScreenUI();
+        fadeScreen.DoFadeIn();
 
         Player player=Player.instance;
 
@@ -57,6 +72,14 @@ public class GameManager : MonoBehaviour,ISaveable
 
         if(position!=Vector3.zero)
             player.TeleportPlayer(position);
+    }
+
+    private UI_FadeScreen FindFadeScreenUI()
+    {
+        if(UI.instance !=null )
+            return UI.instance.fadeScreenUI;
+        else
+            return FindFirstObjectByType<UI_FadeScreen>();
     }
 
     private Vector3 GetNewPlayerPosition(RespawnType type)
@@ -122,6 +145,8 @@ public class GameManager : MonoBehaviour,ISaveable
         //自己新增的代码
         if (lastPlayerPosition == Vector3.zero)
         lastPlayerPosition = Vector3.one * 9999;  // 兜底：让所有检查点距离相等，取第一个
+        
+        dataLoaded=true;
     }
 
     public void SaveData(ref GameData data)
@@ -132,5 +157,6 @@ public class GameManager : MonoBehaviour,ISaveable
 
         data.lastPlayerPosition=Player.instance.transform.position;
         data.lastScenePlayed=currentScene;
+        dataLoaded=false;
     }
 }
