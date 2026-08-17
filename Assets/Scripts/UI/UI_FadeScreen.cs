@@ -15,6 +15,10 @@ public class UI_FadeScreen : MonoBehaviour
         fadeImage.color=new Color(0,0,0,1);
     }
 
+    public void SetBlack()
+    {
+        fadeImage.color=new Color(0,0,0,1);
+    }
     public void DoFadeIn(float duration=1f)
     {
         fadeImage.color=new Color(0,0,0,1);

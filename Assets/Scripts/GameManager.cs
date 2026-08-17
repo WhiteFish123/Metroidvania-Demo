@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour,ISaveable
 
         fadeScreen.DoFadeOut();
         yield return fadeScreen.fadeEffectCo;
-
+        
         SceneManager.LoadScene(sceneName);
 
         dataLoaded=false;
