@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class UI_MainMenu : MonoBehaviour
 {
+
     private void Start()
     {
+        transform.root.GetComponentInChildren<UI_Options>(true).LoadUpVolume();
         transform.root.GetComponentInChildren<UI_FadeScreen>().DoFadeIn();//画面淡入
         AudioManager.instance.StartBGM("playlist_mainMenu");//开始播放主菜单背景音乐
+
     }
     public void PlayBTN()
     {
