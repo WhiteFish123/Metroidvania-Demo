@@ -1,0 +1,30 @@
+using UnityEngine;
+using UnityEditor;
+using System.Linq;
+using System.Collections.Generic;
+[CreateAssetMenu(menuName = "RPG Setup/Quest Data/Quest Database",fileName="QUEST DATABASE")]
+public class QuestDatabaseSO : ScriptableObject
+{
+    public QuestDataSO[] allQuests;
+
+    public QuestDataSO GetQuestByID(string id)
+    {
+        return allQuests.FirstOrDefault(q=>q!=null&&q.questSaveId==id);
+    }
+
+#if UNITY_EDITOR
+    [ContextMenu("Auto fill with all QuestDataSO")]
+    public void CollectItemsData()
+    {
+        string[] guids=AssetDatabase.FindAssets("t:ItemDataSO");
+
+        allQuests=guids
+            .Select(guid=>AssetDatabase.LoadAssetAtPath<QuestDataSO>(AssetDatabase.GUIDToAssetPath(guid)))
+            .Where(q=>q!=null)
+            .ToArray();
+
+        EditorUtility.SetDirty(this);
+        AssetDatabase.SaveAssets();
+    }
+#endif
+}

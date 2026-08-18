@@ -5,6 +5,7 @@ public class Object_NPC : MonoBehaviour
     protected Transform player;//玩家的位置
     protected UI ui;
 
+    [SerializeField]private string npcTargetQuestId;
     [SerializeField] private Transform npc;//npc的位置
     [SerializeField] private GameObject interactToolTip;//交互提示
     private bool facingRight = true;

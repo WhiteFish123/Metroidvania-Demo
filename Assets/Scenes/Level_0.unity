@@ -64313,6 +64313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb1fa3bbe2e8d9e43a6293def88e5c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcTargetQuestId: 
   npc: {fileID: 1427087065}
   interactToolTip: {fileID: 885258181}
   floatSpeed: 8
@@ -65037,6 +65038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e74ef538be76e8f4dabea9399f6e7ee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcTargetQuestId: blacksmith-joe
   npc: {fileID: 287865945}
   interactToolTip: {fileID: 237696947}
   floatSpeed: 8
