@@ -17,7 +17,7 @@ MonoBehaviour:
   description: It used to be a quiet place, just a pickaxe and a shovel. Now it's
     bones and bother. I'd take care of them myself, but my knees aren't what they
     used to be. Go knock a few of them back into the dirt for me, will you?
-  questGoal: ' - Skill 2 skeletons'
+  questGoal: ' - Eliminate skeletons:'
   questTargetId: enemy_skeleton
   requiredAmount: 2
   rewardType: 0
