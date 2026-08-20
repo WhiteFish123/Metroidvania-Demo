@@ -30,6 +30,7 @@ public class Enemy_Health : Entity_Health
     }
     protected override void Die()
     {
+        if (isDead) return;
         base.Die();
         questManager.AddProgress(enemy.questTargetId);
     }

@@ -16,7 +16,7 @@ public class QuestDatabaseSO : ScriptableObject
     [ContextMenu("Auto fill with all QuestDataSO")]
     public void CollectItemsData()
     {
-        string[] guids=AssetDatabase.FindAssets("t:ItemDataSO");
+        string[] guids=AssetDatabase.FindAssets("t:QuestDataSO");
 
         allQuests=guids
             .Select(guid=>AssetDatabase.LoadAssetAtPath<QuestDataSO>(AssetDatabase.GUIDToAssetPath(guid)))

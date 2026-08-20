@@ -12,6 +12,8 @@ public class GameData
     public SerializableDictionary<string,int>storageItems;
     public SerializableDictionary<string,int>storageMaterials;
     public SerializableDictionary<string,ItemType>equipedItems;//物品的id->物品的类型
+    public SerializableDictionary<string,bool>completedQuests;//任务的id->是否完成
+    public SerializableDictionary<string,int>activeQuests;//任务的id->任务的进度值
 
     public int skillPoints;
     public SerializableDictionary<string,bool>skillTreeUI;//技能的id->技能是否解锁
@@ -38,5 +40,7 @@ public class GameData
 
         unlockedCheckpoints=new SerializableDictionary<string,bool>();
         inScenePortals=new SerializableDictionary<string,Vector3>();
+        completedQuests=new SerializableDictionary<string,bool>();
+        activeQuests=new SerializableDictionary<string,int>();
     }
 }

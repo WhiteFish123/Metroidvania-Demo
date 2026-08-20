@@ -88476,6 +88476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeQuests: []
   completedQuests: []
+  questDatabase: {fileID: 11400000, guid: 4bb6bfe829f063049b2611ea7d4fe321, type: 2}
 --- !u!1001 &2418260801640166306
 PrefabInstance:
   m_ObjectHideFlags: 0
