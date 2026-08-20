@@ -41,6 +41,10 @@ public class Entity_Health : MonoBehaviour, IDamageable
 
         SetupHealth();
     }
+    protected virtual void Start()
+    {
+        
+    }
 
     private void SetupHealth()
     {
