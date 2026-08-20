@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Object_Merchant : Object_NPC, IInteractable
 {
+    [Header("Quest & Dialogue")]
+    [SerializeField]private QuestDataSO[] quests;
+
     private Inventory_Player inventory;
     private Inventory_Merchant merchant;
 
@@ -21,8 +24,10 @@ public class Object_Merchant : Object_NPC, IInteractable
 
     public void Interact()
     {
-        ui.merchantUI.SetupMerchantUI(merchant,inventory);
-        ui.OpenMerchantUI(true);
+        ui.OpenQuestUI(quests);
+
+        //ui.merchantUI.SetupMerchantUI(merchant,inventory);
+        //ui.OpenMerchantUI(true);
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)

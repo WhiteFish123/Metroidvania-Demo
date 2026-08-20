@@ -13,7 +13,7 @@ public class UI_QuestPreview : MonoBehaviour
     public void SetupQuestPreview(QuestDataSO questDataSO)
     {
         EnableAddtionalObjects(true);
-        EnableQuestRewardObjects(true);
+        EnableQuestRewardObjects(false);
 
         questName.text = questDataSO.questName;
         questDescription.text=questDataSO.description;
@@ -21,12 +21,15 @@ public class UI_QuestPreview : MonoBehaviour
         
         for(int i=0;i<questDataSO.rewardItems.Length;i++)
         {
+            Inventory_Item rewardItem = new Inventory_Item(questDataSO.rewardItems[i].itemData);
+            rewardItem.stackSize=questDataSO.rewardItems[i].stackSize;
+
             questReward[i].gameObject.SetActive(true);
-            questReward[i].UpdateSlot(questDataSO.rewardItems[i]);
+            questReward[i].UpdateSlot(rewardItem);
         }
     }
 
-    private void MakeQuestPreviewEmpty()
+    public void MakeQuestPreviewEmpty()
     {
         questName.text="";
         questDescription.text="";

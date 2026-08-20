@@ -9,9 +9,12 @@ public class UI_QuestSlot : MonoBehaviour
      [SerializeField] private Image[] rewardQuickPrewview;
 
      private QuestDataSO questInSlot;
+     private UI_QuestPreview questPreview;
 
      public void SetupQuestSlot(QuestDataSO questDataSO)
     {
+        questPreview=transform.root.GetComponentInChildren<UI_Quest>().GetQuestPreview();
+
         questInSlot = questDataSO;
 
         questName.text = questInSlot.questName;
@@ -35,6 +38,6 @@ public class UI_QuestSlot : MonoBehaviour
 
     public void UpdateQuestPreview()
     {
-        Debug.Log("Setup quest preview");
+        questPreview.SetupQuestPreview(questInSlot);
     }
 }
