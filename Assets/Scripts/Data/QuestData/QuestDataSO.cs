@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
-public enum RewardType{Merchant,BlackSmith,None};
+public enum RewardType{Merchant,Blacksmith,None};
 [CreateAssetMenu(menuName = "RPG Setup/Quest Data/New Quest",fileName="Quest - ")]
 public class QuestDataSO : ScriptableObject
 {

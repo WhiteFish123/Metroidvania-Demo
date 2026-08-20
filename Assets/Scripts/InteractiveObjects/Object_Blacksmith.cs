@@ -15,8 +15,9 @@ public class Object_Blacksmith : Object_NPC, IInteractable
         anim.SetBool("isBlacksmith", true);//切换到铁匠的动画上去
     }
 
-    public void Interact()
+    public override void Interact()
     {
+        base.Interact();
         ui.storageUI.SetupStorageUI(storage);
         ui.craftUI.SetupCraftUI(storage);
 

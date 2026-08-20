@@ -83523,6 +83523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcTargetQuestId: merchant_bob
+  rewardNpc: 0
   npc: {fileID: 1427087065}
   interactToolTip: {fileID: 885258181}
   floatSpeed: 8
@@ -88327,6 +88328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcTargetQuestId: blacksmith-joe
+  rewardNpc: 1
   npc: {fileID: 287865945}
   interactToolTip: {fileID: 237696947}
   floatSpeed: 8
@@ -88473,6 +88475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeQuests: []
+  completedQuests: []
 --- !u!1001 &2418260801640166306
 PrefabInstance:
   m_ObjectHideFlags: 0
