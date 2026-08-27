@@ -15,9 +15,9 @@ MonoBehaviour:
   dialogueGroupName: Merchant Bob
   speaker: {fileID: 11400000, guid: 655dd970fa3750548857e35128fd3d58, type: 2}
   textLine:
-  - Text1
-  - Text2
-  - Text3
+  - Text111111111111111111111
+  - Text22222222222222222222222222
+  - Text333333333333333333333333
   playerCanAnswer: 1
   answerLine:
   - {fileID: 0}

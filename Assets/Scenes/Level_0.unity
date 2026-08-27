@@ -1780,7 +1780,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hey friend! Want to get something?
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 57b18b60955ce8e44b6744bcea9920a4, type: 2}
   m_sharedMaterial: {fileID: 1017423345457961784, guid: 57b18b60955ce8e44b6744bcea9920a4, type: 2}
@@ -2009,6 +2009,7 @@ MonoBehaviour:
   speakerName: {fileID: 1698140185}
   dialogueText: {fileID: 408501700}
   dialogueChoices: {fileID: 164944339}
+  typingSpeed: 0.05
 --- !u!224 &490060794
 RectTransform:
   m_ObjectHideFlags: 0
