@@ -6,6 +6,7 @@ public class Player_QuestManager : MonoBehaviour,ISaveable
     public List<QuestData> activeQuests;
     public List<QuestData> completedQuests;
     private Entity_DropManager dropManager;
+    private Inventory_Player inventory;
     [Header("Quest Database")]
     [SerializeField]private QuestDatabaseSO questDatabase;
 
@@ -13,6 +14,7 @@ public class Player_QuestManager : MonoBehaviour,ISaveable
     private void Awake()
     {
         dropManager=GetComponent<Entity_DropManager>();
+        inventory=GetComponent<Inventory_Player>();
     }
     public void TryGiveRewardFrom(RewardType npcType)
     {
@@ -20,9 +22,21 @@ public class Player_QuestManager : MonoBehaviour,ISaveable
 
         foreach(var quest in activeQuests)
         {
+            if(quest.questDataSO.questType==QuestType.Delivery)
+            {
+                var requiredItem=quest.questDataSO.itemToDeliver;
+                var requiredAmount=quest.questDataSO.requiredAmount;
+                if(inventory.HasItemAmount(requiredItem,requiredAmount))
+                {
+                    inventory.RemoveItemAmount(requiredItem,requiredAmount);
+                    quest.AddQuestProgress(requiredAmount);
+                }
+            }
+
             if(quest.CanGetReward()&&quest.questDataSO.rewardType==npcType)
                 getRewardQuests.Add(quest);
         }
+
         foreach(var quest in getRewardQuests)
         {
             GiveQuestReward(quest.questDataSO);
