@@ -9,10 +9,10 @@ public class DialogueLineSO : ScriptableObject
     [Header("Text options")]
     [TextArea]public string[] textLine;
 
-    [Header("Answer setup")]
-    public bool playerCanAnswer;//如果玩家可以做选择的话，值为true
-    public DialogueLineSO[] answerLine;//玩家可以选择的对话行
+    [Header("Dialogue Action")]
+    public DialogueActionType actionType;
 
+    
     public string GetRandomLine()
     {
         return textLine[Random.Range(0,textLine.Length)];

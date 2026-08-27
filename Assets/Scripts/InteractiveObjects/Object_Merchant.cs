@@ -26,11 +26,12 @@ public class Object_Merchant : Object_NPC, IInteractable
     public override void Interact()
     {
         base.Interact();
+        
+        ui.merchantUI.SetupMerchantUI(merchant,inventory);
         ui.OpenDialogueUI(firstDialogueLine);
         //ui.OpenQuestUI(quests);
 
-        //ui.merchantUI.SetupMerchantUI(merchant,inventory);
-        //ui.OpenMerchantUI(true);
+        // ui.OpenMerchantUI(true);
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)

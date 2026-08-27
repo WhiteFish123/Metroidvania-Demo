@@ -18,8 +18,4 @@ MonoBehaviour:
   - Text111111111111111111111
   - Text22222222222222222222222222
   - Text333333333333333333333333
-  playerCanAnswer: 1
-  answerLine:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  actionType: 2
