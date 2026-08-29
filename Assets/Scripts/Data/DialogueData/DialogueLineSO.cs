@@ -10,9 +10,12 @@ public class DialogueLineSO : ScriptableObject
     [TextArea]public string[] textLine;
 
     [Header("Dialogue Action")]
+    [TextArea]public string actionLine;
     public DialogueActionType actionType;
+    public DialogueLineSO[] choiceLines;
 
-    
+    public string GetFirstLine()=>textLine[0];
+
     public string GetRandomLine()
     {
         return textLine[Random.Range(0,textLine.Length)];

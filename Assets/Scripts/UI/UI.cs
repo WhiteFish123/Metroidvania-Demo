@@ -87,6 +87,13 @@ public class UI : MonoBehaviour
                 dialogueUI.DialogueInteraction();
 
         };
+        input.UI.DialogueNavigation.performed+=ctx=>
+        {
+            int direction=Mathf.RoundToInt(ctx.ReadValue<float>());
+            
+            if(dialogueUI.gameObject.activeInHierarchy)//如果对话UI正在显示
+                dialogueUI.NavigateChoice(direction);
+        };
     }
 
     public void OpenDeathScreenUI()

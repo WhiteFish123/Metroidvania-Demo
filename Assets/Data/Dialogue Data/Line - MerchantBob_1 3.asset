@@ -10,17 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b88e098df5aca44d85a8c7308ad3b52, type: 3}
-  m_Name: Line - MerchantBob_1
+  m_Name: Line - MerchantBob_1 3
   m_EditorClassIdentifier: 
   dialogueGroupName: Merchant Bob
   speaker: {fileID: 11400000, guid: 655dd970fa3750548857e35128fd3d58, type: 2}
   textLine:
-  - Text111111111111111111111
-  - Text22222222222222222222222222
-  - Text333333333333333333333333
-  actionLine: 
-  actionType: 5
-  choiceLines:
-  - {fileID: 11400000, guid: bab852e185b32f04eaef4e391e7b35c4, type: 2}
-  - {fileID: 11400000, guid: 7d0ff88f9205a7041a94709c28d8466b, type: 2}
-  - {fileID: 11400000, guid: f772f4199c80ec94793c272d432a201d, type: 2}
+  - I have to go
+  actionLine: OK
+  actionType: 6
+  choiceLines: []
