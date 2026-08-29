@@ -10,18 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b88e098df5aca44d85a8c7308ad3b52, type: 3}
-  m_Name: Line - MerchantBob_1
+  m_Name: Line - MerchantBob_2 2 2
   m_EditorClassIdentifier: 
   dialogueGroupName: Merchant Bob
   speaker: {fileID: 11400000, guid: 655dd970fa3750548857e35128fd3d58, type: 2}
   textLine:
-  - Text111111111111111111111
-  - Text22222222222222222222222222
-  - Text333333333333333333333333
-  playerChoiceAnswer: 
-  choiceLines:
-  - {fileID: 11400000, guid: bab852e185b32f04eaef4e391e7b35c4, type: 2}
-  - {fileID: 11400000, guid: 7d0ff88f9205a7041a94709c28d8466b, type: 2}
-  - {fileID: 11400000, guid: 5ee5ffed52a05c144a85fd02946f95ed, type: 2}
-  actionLine: 
-  actionType: 5
+  - 
+  playerChoiceAnswer: I want to get my reward
+  choiceLines: []
+  actionLine: Here you go lad,you deserve it
+  actionType: 4

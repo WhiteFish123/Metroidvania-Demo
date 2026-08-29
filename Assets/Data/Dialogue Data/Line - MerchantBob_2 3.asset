@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b88e098df5aca44d85a8c7308ad3b52, type: 3}
-  m_Name: Line - MerchantBob_1 3
+  m_Name: Line - MerchantBob_2 3
   m_EditorClassIdentifier: 
   dialogueGroupName: Merchant Bob
   speaker: {fileID: 11400000, guid: 655dd970fa3750548857e35128fd3d58, type: 2}
   textLine:
-  - I have to go
-  actionLine: OK
-  actionType: 6
+  - 
+  playerChoiceAnswer: I have to go
   choiceLines: []
+  actionLine: Sure lad.Good Luck!
+  actionType: 6

@@ -10,12 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b88e098df5aca44d85a8c7308ad3b52, type: 3}
-  m_Name: Line - MerchantBob_1 2
+  m_Name: Line - MerchantBob_2 2
   m_EditorClassIdentifier: 
   dialogueGroupName: Merchant Bob
   speaker: {fileID: 11400000, guid: 655dd970fa3750548857e35128fd3d58, type: 2}
   textLine:
-  - Do you have a job for me?
+  - You came to the right place!
+  playerChoiceAnswer: About the job
+  choiceLines:
+  - {fileID: 11400000, guid: 2977dcbfd1f6ad44a9078c7f0372bde8, type: 2}
+  - {fileID: 11400000, guid: df7ee30535209454b95538920cab0404, type: 2}
   actionLine: Sure.
-  actionType: 1
-  choiceLines: []
+  actionType: 5

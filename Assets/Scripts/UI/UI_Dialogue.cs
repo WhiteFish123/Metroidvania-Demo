@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class UI_Dialogue : MonoBehaviour
 {
     private UI ui;
+    private DialogueNpcData npcData;
+    private Player_QuestManager questManager;
     [SerializeField]private Image speakerPortrait;
     [SerializeField]private TextMeshProUGUI speakerName;
     [SerializeField]private TextMeshProUGUI dialogueText;
@@ -27,14 +29,20 @@ public class UI_Dialogue : MonoBehaviour
     private void Awake()
     {
         ui=GetComponentInParent<UI>();
+        questManager=Player.instance.questManager;
     }
 
+    public void SetupNpcData(DialogueNpcData npcData)=>this.npcData=npcData;
     public void PlayDialogueLIne(DialogueLineSO line)
     {
         currentLine=line;
         currentChoices=line.choiceLines;
         canInteract=false;
         HideAllChoices();
+        selectedChoiceIndex=0;
+        #region 自己加的
+        selectedChoice=null;
+        #endregion
 
         speakerPortrait.sprite=line.speaker.speakerPortrait;
         speakerName.text=line.speaker.speakerName;
@@ -55,16 +63,34 @@ public class UI_Dialogue : MonoBehaviour
             case DialogueActionType.PlayerMakeChoice:
                 if(selectedChoice==null)
                 {
-                    selectedChoiceIndex=0;
                     ShowChoices();
+                    #region 自己加的
+                    waitingToConfirm=true;
+                    #endregion
                 }
                 else
                 {
                     DialogueLineSO selectedChoice=currentChoices[selectedChoiceIndex];
                     PlayDialogueLIne(selectedChoice);
+                    
                     selectedChoice=null;
                 }
                     break;
+            case DialogueActionType.OpenQuest:
+                ui.SwitchToInGameUI();
+                ui.OpenQuestUI(npcData.quests);
+                break;
+            case DialogueActionType.GetQuestReward:
+                ui.SwitchToInGameUI();
+                questManager.TryGetRewardFrom(npcData.npcRewardType);
+                break;
+            case DialogueActionType.OpenCraft:
+                ui.SwitchToInGameUI();
+                ui.OpenCraftUI(true);
+                break;
+            case DialogueActionType.CloseDialogue:
+                ui.SwitchToInGameUI();
+                break;
                     
         }
     }
@@ -76,6 +102,10 @@ public class UI_Dialogue : MonoBehaviour
         if(typeTextCo!=null)
         {
             CompleteTyping();
+            if(currentLine.actionType!=DialogueActionType.PlayerMakeChoice)
+                waitingToConfirm=true; 
+            else
+                HandleNextAction();
             waitingToConfirm=true;
             return;
         }
@@ -102,11 +132,15 @@ public class UI_Dialogue : MonoBehaviour
             if(i<currentChoices.Length)//如果索引还在选项范围内
             {
                 DialogueLineSO choice=currentChoices[i];
-                string choiceText=choice.GetFirstLine();
+                string choiceText=choice.playerChoiceAnswer;
+
                 dialogueChoicesText[i].gameObject.SetActive(true);
                 dialogueChoicesText[i].text=selectedChoiceIndex == i ? 
                     $"<color=yellow>{i+1 } { choiceText}" : 
                     $"{i+1 }{choiceText}";
+
+                if(choice.actionType==DialogueActionType.GetQuestReward&&questManager.HasCompletedQuest()==false)
+                    dialogueChoicesText[i].gameObject.SetActive(false);
             }
             else
             {
@@ -145,6 +179,7 @@ public class UI_Dialogue : MonoBehaviour
         else
         {
             yield return new WaitForSeconds(.2f);
+            selectedChoice=null;
             HandleNextAction();
         }
         typeTextCo = null;

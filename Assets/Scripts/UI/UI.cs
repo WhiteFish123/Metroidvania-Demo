@@ -90,7 +90,7 @@ public class UI : MonoBehaviour
         input.UI.DialogueNavigation.performed+=ctx=>
         {
             int direction=Mathf.RoundToInt(ctx.ReadValue<float>());
-            
+
             if(dialogueUI.gameObject.activeInHierarchy)//如果对话UI正在显示
                 dialogueUI.NavigateChoice(direction);
         };
@@ -175,12 +175,13 @@ public class UI : MonoBehaviour
         StopPlayerControlsIfNeeded();
     }
 
-    public void OpenDialogueUI(DialogueLineSO firstLine)
+    public void OpenDialogueUI(DialogueLineSO firstLine,DialogueNpcData npcData)
     {
         StopPlayerControls(true);
         HideAllTooltips();
 
         dialogueUI.gameObject.SetActive(true);
+        dialogueUI.SetupNpcData(npcData);
         dialogueUI.PlayDialogueLIne(firstLine);
     }
     public void OpenQuestUI(QuestDataSO[] questsToShow)
@@ -199,6 +200,17 @@ public class UI : MonoBehaviour
         if (openStorageUI == false)
         {
             craftUI.gameObject.SetActive(false);
+            HideAllTooltips();
+        }
+    }
+    public void OpenCraftUI(bool openStorageUI)
+    {
+        craftUI.gameObject.SetActive(openStorageUI);
+        StopPlayerControls(openStorageUI);
+
+        if (openStorageUI == false)
+        {
+            storageUI.gameObject.SetActive(false);
             HideAllTooltips();
         }
     }

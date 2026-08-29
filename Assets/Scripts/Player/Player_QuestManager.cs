@@ -16,7 +16,7 @@ public class Player_QuestManager : MonoBehaviour,ISaveable
         dropManager=GetComponent<Entity_DropManager>();
         inventory=GetComponent<Inventory_Player>();
     }
-    public void TryGiveRewardFrom(RewardType npcType)
+    public void TryGetRewardFrom(RewardType npcType)
     {
         List<QuestData> getRewardQuests=new List<QuestData>();
 
@@ -57,7 +57,23 @@ public class Player_QuestManager : MonoBehaviour,ISaveable
             }
         }
     }
-
+    public bool HasCompletedQuest()
+    {
+        for(int i=0;i<activeQuests.Count;i++)
+        {
+            QuestData quest=activeQuests[i];
+            if(quest.questDataSO.questType==QuestType.Delivery)
+            {
+                var requiredItem=quest.questDataSO.itemToDeliver;
+                var requiredAmount=quest.questDataSO.requiredAmount;
+                if(inventory.HasItemAmount(requiredItem,requiredAmount))
+                    return true;
+            }
+            if(quest.CanGetReward())
+                return true;
+        }
+        return false;
+    }
     public void AddProgress(string questTargetId,int amount = 1)
     {
         List<QuestData>getRewardQuests=new List<QuestData>();
