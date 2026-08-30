@@ -96,6 +96,11 @@ public class Enemy : Entity
         stateMachine.ChangeState(battleState);
     }
 
+    public void DestroyGameObjectWithDelay(float delay=10)
+    {
+        Destroy(gameObject,delay);
+    }
+
     public Transform GetPlayerReference()
     {
         if (player == null)

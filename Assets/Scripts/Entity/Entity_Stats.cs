@@ -14,7 +14,27 @@ public class Entity_Stats : MonoBehaviour
     {
 
     }
+    public void AdjustStatSetup(Stat_ResourceGroup resourceGroup,Stat_OffenseGroup offenseGroup,Stat_DefenseGroup defenseGroup,float penalty,float increase)
+    {
+        //增强
+        offense.damage.SetBaseValue(offenseGroup.damage.GetValue() * increase);
+        offense.attackSpeed.SetBaseValue(offenseGroup.attackSpeed.GetValue() * increase);
+        offense.critChance.SetBaseValue(offenseGroup.critChance.GetValue() * increase);
+        offense.critPower.SetBaseValue(offenseGroup.critPower.GetValue() * increase);
+        offense.fireDamage.SetBaseValue(offenseGroup.fireDamage.GetValue() * increase);
+        offense.iceDamage.SetBaseValue(offenseGroup.iceDamage.GetValue() * increase);
+        offense.lightningDamage.SetBaseValue(offenseGroup.lightningDamage.GetValue() * increase);
 
+        defense.evasion.SetBaseValue(defenseGroup.evasion.GetValue() * increase);
+        //削弱
+        resources.maxHealth.SetBaseValue(resourceGroup.maxHealth.GetValue() * penalty);
+        resources.healthRegen.SetBaseValue(resourceGroup.healthRegen.GetValue() * penalty);
+
+        defense.armor.SetBaseValue(defenseGroup.armor.GetValue() * penalty);
+        defense.lightningRes.SetBaseValue(defenseGroup.lightningRes.GetValue() * penalty);
+        defense.fireRes.SetBaseValue(defenseGroup.fireRes.GetValue() * penalty);
+        defense.iceRes.SetBaseValue(defenseGroup.iceRes.GetValue() * penalty);
+    }
     public AttackData GetAttackData(DamageScaleData scaleData)
     {
         return new AttackData(this, scaleData);
