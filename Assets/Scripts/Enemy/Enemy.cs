@@ -18,6 +18,9 @@ public class Enemy : Entity
     [Header("Battle details")]
     public float battleMoveSpeed = 3;
     public float attackDistance = 2;
+    public float attackCooldown=1f;
+    public bool CanChasePlayer=true;//是否可以追玩家
+    [Space]
     public float battleTimeDuration = 5;
     public float minRetreatDistance = 1;
     public Vector2 retreatVelocity;
