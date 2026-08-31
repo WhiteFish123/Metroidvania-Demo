@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class Enemy_ArcherElfBattleState : Enemy_BattleState
 {
-    #region 自己注释的
-    //private bool canFlip;
-    #endregion
+    private bool canFlip;
     private bool reachedDeadEnd;
     public Enemy_ArcherElfBattleState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
     {
@@ -37,12 +35,12 @@ public class Enemy_ArcherElfBattleState : Enemy_BattleState
             if(enemy.PlayerDetected()==false)//&&canFlip)
             {
                 enemy.HandleFlip(DirectionToPlayer());
-                //canFlip=false;
+                canFlip=false;
             }
             enemy.SetVelocity(0,rb.linearVelocity.y);
             if (WithinAttackRange() && enemy.PlayerDetected())
             {
-                //canFlip=true;
+                canFlip=true;
                 lastTimeAttacked = Time.time;
                 stateMachine.ChangeState(enemy.attackState);
             }

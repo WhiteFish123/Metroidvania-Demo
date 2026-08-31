@@ -5,7 +5,7 @@ public class Enemy_BattleState : EnemyState
     protected Transform player;
     protected Transform lastTarget;
     protected float lastTimeWasInBattle;
-    protected float lastTimeAttacked;
+    protected float lastTimeAttacked=float.NegativeInfinity;
 
     public Enemy_BattleState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
     {
