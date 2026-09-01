@@ -4,8 +4,16 @@ public class Enemy_Mage : Enemy , ICounterable
 {
     public bool CanBeCountered { get => canBeStunned; }
 
+    public Enemy_MageRetreatState mageRetreatState { get; private set; }
+    public Enemy_MageBattleState mageBattleState { get; private set; }
+
     [Header("Mage specifics")]
     [SerializeField]private bool hasRecoveryAnimation = true;
+
+    [Space]
+    public float retreatCooldown=5;
+    public float retreatMaxDistance=8;
+    public float retreatSpeed=15;
 
     protected override void Awake()
     {
@@ -14,9 +22,12 @@ public class Enemy_Mage : Enemy , ICounterable
         idleState = new Enemy_IdleState(this, stateMachine, "idle");
         moveState = new Enemy_MoveState(this, stateMachine, "move");
         attackState = new Enemy_AttackState(this, stateMachine, "attack");
-        battleState = new Enemy_BattleState(this, stateMachine, "battle");
         deadState = new Enemy_DeadState(this, stateMachine, "idle");
         stunnedState = new Enemy_StunnedState(this, stateMachine, "stunned");
+
+        mageBattleState = new Enemy_MageBattleState(this, stateMachine, "battle");
+        mageRetreatState = new Enemy_MageRetreatState(this, stateMachine, "battle");
+        battleState=mageBattleState;
 
         anim.SetBool("hasStunRecovery", hasRecoveryAnimation);
     }

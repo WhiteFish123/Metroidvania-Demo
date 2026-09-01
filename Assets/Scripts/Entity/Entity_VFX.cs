@@ -8,6 +8,12 @@ public class Entity_VFX : MonoBehaviour
     protected SpriteRenderer sr;
     private Entity entity;
 
+    [Header("Image Echo VFX")]
+    [Range(.01f, .2f)]
+    [SerializeField] private float imageEchoInterval = .05f;
+    [SerializeField] private GameObject imageEchoPrefab;
+    private Coroutine imageEchoCo;
+
     [Header("On Taking Damage VFX")]
     [SerializeField] private Material onDamageMaterial;
     [SerializeField] private float onDamageVfxDuration = .2f;
@@ -33,6 +39,45 @@ public class Entity_VFX : MonoBehaviour
         originalHitVfxColor = hitVfxColor;
     }
 
+    
+
+    public void DoImageEchoEffect(float duration)
+    {
+        StopImageEchoEffect();
+
+        imageEchoCo = StartCoroutine(ImageEchoEffectCo(duration));
+    }
+
+    public void StopImageEchoEffect()
+    {
+        if(imageEchoCo != null)
+            StopCoroutine(imageEchoCo);
+    }
+
+
+    private IEnumerator ImageEchoEffectCo(float duration)
+    {
+        float timeTracker = 0;
+
+        while (timeTracker < duration)
+        {
+            CreateImageEcho();
+
+            yield return new WaitForSeconds(imageEchoInterval);
+            timeTracker = timeTracker + imageEchoInterval;
+        }
+    }
+
+    private void CreateImageEcho()
+    {
+        Vector3 position = entity.anim.transform.position;
+        float scale=entity.anim.transform.localScale.x;
+
+        GameObject imageEcho = Instantiate(imageEchoPrefab, position, transform.rotation);
+        
+        imageEcho.transform.localScale = new Vector3(scale, scale, scale);
+        imageEcho.GetComponentInChildren<SpriteRenderer>().sprite = sr.sprite;
+    }
     public void PlayOnStatusVfx(float duration, ElementType element)
     {
         if (element == ElementType.Ice)
