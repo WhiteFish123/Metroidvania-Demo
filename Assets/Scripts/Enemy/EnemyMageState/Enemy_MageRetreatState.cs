@@ -28,15 +28,13 @@ public class Enemy_MageRetreatState : EnemyState
         
         bool reachedMaxDistance=Vector2.Distance(enemy.transform.position, startPosition) > enemyMage.retreatMaxDistance;
         
-        if(reachedMaxDistance)
-        {
-            rb.linearVelocity=Vector2.zero;
-            enemy.vfx.StopImageEchoEffect();
-        }
+        if(reachedMaxDistance||enemyMage.CantMoveBackwards())
+            stateMachine.ChangeState(enemyMage.mageSpellCastState);
     }
     override public void Exit()
     {
         base.Exit();
+        enemy.vfx.StopImageEchoEffect();
         enemy.gameObject.layer = LayerMask.NameToLayer("Enemy");
     }
     protected int DirectionToPlayer()
