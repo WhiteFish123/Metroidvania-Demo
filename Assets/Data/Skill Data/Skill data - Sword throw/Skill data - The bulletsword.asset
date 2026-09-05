@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cdfdfbc5df2c414e952a12e3fc10d6f, type: 3}
   m_Name: Skill data - The bulletsword
   m_EditorClassIdentifier: 
-  displayName: The bulletsword
-  description: Launch a sword that flies forward, piercing through up to N enemies
-    in its path
+  displayName: "\u5B50\u5F39\u5251"
+  description: "\u53D1\u5C04\u4E00\u628A\u5411\u524D\u98DE\u884C\u7684\u5251\uFF0C\u523A\u7A7F\u8DEF\u5F84\u4E0A\u6700\u591A
+    N \u4E2A\u654C\u4EBA\u3002"
   icon: {fileID: -1493271087, guid: 7ae0115109b4a6f42a4f7ad59397d09b, type: 3}
   cost: 2
   unlockedByDefault: 0

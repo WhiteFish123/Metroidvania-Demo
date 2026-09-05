@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cdfdfbc5df2c414e952a12e3fc10d6f, type: 3}
   m_Name: Skill data - Time echo
   m_EditorClassIdentifier: 
-  displayName: Time echo
-  description: 'Create a time echo of yourself.
-
-    The echo will distracts enemies.'
+  displayName: "\u65F6\u95F4\u56DE\u54CD"
+  description: "\u521B\u9020\u4E00\u4E2A\u81EA\u8EAB\u7684\u65F6\u95F4\u56DE\u54CD\uFF0C\u8BE5\u56DE\u54CD\u4F1A\u5206\u6563\u654C\u4EBA\u7684\u6CE8\u610F\u529B"
   icon: {fileID: -7293604, guid: 7ae0115109b4a6f42a4f7ad59397d09b, type: 3}
   cost: 1
   unlockedByDefault: 0

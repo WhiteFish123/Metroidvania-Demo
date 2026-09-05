@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cdfdfbc5df2c414e952a12e3fc10d6f, type: 3}
   m_Name: Skill data - Time warp
   m_EditorClassIdentifier: 
-  displayName: Time warp
-  description: Create a field that drastically slows all enemies caught within.
+  displayName: "\u65F6\u95F4\u626D\u66F2"
+  description: "\u521B\u9020\u4E00\u4E2A\u529B\u573A\u533A\u57DF\uFF0C\u5927\u5E45\u51CF\u7F13\u6240\u6709\u88AB\u56F0\u4E8E\u5176\u4E2D\u7684\u654C\u4EBA\u7684\u79FB\u52A8\u901F\u5EA6\u3002"
   icon: {fileID: -248090357, guid: 7ae0115109b4a6f42a4f7ad59397d09b, type: 3}
   cost: 4
   unlockedByDefault: 0

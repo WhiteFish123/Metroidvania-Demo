@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cdfdfbc5df2c414e952a12e3fc10d6f, type: 3}
   m_Name: Skill data - The chainsaw
   m_EditorClassIdentifier: 
-  displayName: The chainsaw
-  description: The sword spins like a raging chainsaw, dealing damage to nearby enemies
-    for N seconds.
+  displayName: "\u94FE\u952F\u5251"
+  description: "\u5251\u5982\u72C2\u66B4\u7684\u94FE\u952F\u822C\u65CB\u8F6C\uFF0C\u5BF9\u9644\u8FD1\u654C\u4EBA\u9020\u6210\u6301\u7EED
+    N \u79D2\u7684\u4F24\u5BB3\u3002"
   icon: {fileID: -611442429, guid: 7ae0115109b4a6f42a4f7ad59397d09b, type: 3}
   cost: 2
   unlockedByDefault: 0

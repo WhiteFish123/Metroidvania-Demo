@@ -6,6 +6,11 @@ public class Player_GroundedState : PlayerState
     {
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+        skillManager.doubleJump.ResetJumps();
+    }
     public override void Update()
     {
         base.Update();

@@ -12,11 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cdfdfbc5df2c414e952a12e3fc10d6f, type: 3}
   m_Name: Skill data - Time shard
   m_EditorClassIdentifier: 
-  displayName: Time shard
-  description: 'Create a time shard filled with elemental magic.
-
-    The shard explodes
-    when touched by an enemy or when time goes up.'
+  displayName: "\u65F6\u95F4\u788E\u7247"
+  description: "\u521B\u9020\u4E00\u4E2A\u5145\u6EE1\u5143\u7D20\u9B54\u6CD5\u7684\u65F6\u95F4\u788E\u7247\u3002\u5F53\u654C\u4EBA\u89E6\u78B0\u6216\u65F6\u95F4\u8017\u5C3D\u65F6\uFF0C\u788E\u7247\u4F1A\u7206\u70B8"
   icon: {fileID: 1779770775, guid: 7ae0115109b4a6f42a4f7ad59397d09b, type: 3}
   cost: 1
   unlockedByDefault: 0

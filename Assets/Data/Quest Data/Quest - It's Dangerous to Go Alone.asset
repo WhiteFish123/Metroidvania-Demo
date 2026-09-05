@@ -13,15 +13,13 @@ MonoBehaviour:
   m_Name: Quest - It's Dangerous to Go Alone
   m_EditorClassIdentifier: 
   questSaveId: 4fcbb2829933b7547a8682f885cfbb7e
-  questName: Quest - It's Dangerous to Go Alone
-  description: "Since you're just startin' your adventure, you'll need somethin'
-    to train with. I bought a sword off some weird fella \u2013 looked half mad,
-    but the blade was decent. Wait, where'd I put it? Agh, right! Forgot it at Joe's.
-    Go talk to the blacksmith \u2013 he's holdin' onto a weapon worthy of a hero
-    like you."
-  questGoal: ' - Talk to Blacksmith Joe'
+  questType: 0
+  questName: "\u5B64\u8EAB\u52FF\u884C"
+  description: "\u4F60\u521A\u8E0F\u4E0A\u5192\u9669\u4E4B\u65C5\uFF0C\u603B\u5F97\u6709\u70B9\u4E1C\u897F\u7EC3\u7EC3\u624B\u3002\u6211\u4ECE\u4E00\u4E2A\u602A\u5BB6\u4F19\u90A3\u513F\u4E70\u4E86\u628A\u5251\u2014\u2014\u90A3\u5BB6\u4F19\u770B\u7740\u534A\u75AF\uFF0C\u4F46\u5251\u5203\u8FD8\u7B97\u4E0D\u9519\u3002\u7B49\u7B49\uFF0C\u6211\u653E\u54EA\u513F\u53BB\u4E86\uFF1F\u554A\uFF0C\u5BF9\u4E86\uFF01\u5FD8\u5728Joe\u90A3\u513F\u4E86\u3002\u53BB\u627E\u94C1\u5320\u8C08\u8C08\u5427\uFF0C\u4ED6\u624B\u91CC\u6709\u4E00\u628A\u914D\u5F97\u4E0A\u4F60\u8FD9\u6837\u7684\u82F1\u96C4\u7684\u6B66\u5668\u3002"
+  questGoal: " - \u548C\u94C1\u5320Joe\u4EA4\u8C08"
   questTargetId: blacksmith-joe
   requiredAmount: 1
+  itemToDeliver: {fileID: 0}
   rewardType: 1
   rewardItems:
   - itemData: {fileID: 11400000, guid: 45c4b1c1b037fc34785f05b61e2d61ad, type: 2}

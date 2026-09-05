@@ -43,7 +43,7 @@ public class UI_SkillToolTip : UI_ToolTip
 
         skillName.text = skillData.displayName;
         skillDescription.text = skillData.description;
-        skillCooldown.text = "Cooldown: "+ skillData.upgradeData.cooldown + " s.";
+        skillCooldown.text = "冷却时间: "+ skillData.upgradeData.cooldown + " s.";
 
         if (node == null)
         {
@@ -85,10 +85,10 @@ public class UI_SkillToolTip : UI_ToolTip
     {
         StringBuilder sb = new StringBuilder();
 
-        sb.AppendLine("Requirements:");
+        sb.AppendLine("条件:");
 
         string costColor = skillTree.EnoughSkillPoints(skillCost) ? metConditionHex : notMetConditionHex;
-        string costText = $"- {skillCost} skill point(s)";
+        string costText = $"- {skillCost} 技能点";
         string finalCostText = GetColoredText(costColor, costText);
 
         sb.AppendLine(finalCostText);
@@ -109,7 +109,7 @@ public class UI_SkillToolTip : UI_ToolTip
 
 
         sb.AppendLine(); // spacing
-        sb.AppendLine(GetColoredText(importantInfoHex,"Locks out: "));
+        sb.AppendLine(GetColoredText(importantInfoHex," 封印: "));
 
         foreach (var node in conflictNodes)
         {

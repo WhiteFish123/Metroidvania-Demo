@@ -15,10 +15,10 @@ MonoBehaviour:
   dialogueGroupName: Merchant Bob
   speaker: {fileID: 11400000, guid: 655dd970fa3750548857e35128fd3d58, type: 2}
   textLine:
-  - You came to the right place!
-  playerChoiceAnswer: About the job
+  - "\u90A3\u4F60\u5C31\u6765\u5BF9\u4E86\uFF01"
+  playerChoiceAnswer: "\u5173\u4E8E\u59D4\u6258..."
   choiceLines:
   - {fileID: 11400000, guid: 2977dcbfd1f6ad44a9078c7f0372bde8, type: 2}
   - {fileID: 11400000, guid: df7ee30535209454b95538920cab0404, type: 2}
-  actionLine: Sure.
+  actionLine: "\u600E\u4E48\u4E86\uFF1F"
   actionType: 5

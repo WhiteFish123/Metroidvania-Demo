@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cdfdfbc5df2c414e952a12e3fc10d6f, type: 3}
   m_Name: Skill data - Shards of time
   m_EditorClassIdentifier: 
-  displayName: Shards of time
-  description: Each enemy trapped in the time warp is struck by multiple time shards.
+  displayName: "\u65F6\u5149\u788E\u7247"
+  description: "\u6BCF\u4E2A\u88AB\u56F0\u5728\u65F6\u95F4\u626D\u66F2\u4E2D\u7684\u654C\u4EBA\uFF0C\u90FD\u4F1A\u88AB\u591A\u4E2A\u65F6\u95F4\u788E\u7247\u51FB\u4E2D"
   icon: {fileID: 1540406971, guid: 7ae0115109b4a6f42a4f7ad59397d09b, type: 3}
   cost: 4
   unlockedByDefault: 0

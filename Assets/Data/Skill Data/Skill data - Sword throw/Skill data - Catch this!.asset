@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cdfdfbc5df2c414e952a12e3fc10d6f, type: 3}
   m_Name: Skill data - Catch this!
   m_EditorClassIdentifier: 
-  displayName: Catch this!
-  description: Throw your sword to damage enemies. Sword will apply status effects.
-    You can have only one active sword at a tme.
+  displayName: "\u63A5\u62DB\u5427\uFF01"
+  description: "\u6295\u63B7\u4F60\u7684\u5251\u5BF9\u654C\u4EBA\u9020\u6210\u4F24\u5BB3\uFF0C\u5251\u4F1A\u65BD\u52A0\u72B6\u6001\u6548\u679C\u3002\u4F60\u540C\u65F6\u53EA\u80FD\u62E5\u6709\u4E00\u628A\u6FC0\u6D3B\u7684\u5251\u3002"
   icon: {fileID: -2048434906, guid: 7ae0115109b4a6f42a4f7ad59397d09b, type: 3}
   cost: 1
   unlockedByDefault: 0

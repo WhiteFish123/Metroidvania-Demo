@@ -5,6 +5,12 @@ public class Player_WallSlideState : PlayerState
     public Player_WallSlideState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
+    public override void Enter()
+    {
+        base.Enter();
+        
+        skillManager.doubleJump.ResetJumps();
+    }
 
     public override void Update()
     {

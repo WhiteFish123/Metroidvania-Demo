@@ -61,4 +61,8 @@ public abstract class PlayerState : EntityState
 
         return true;
     }
+    protected void SetGravityScale(float scale)
+    {
+        rb.gravityScale = scale;
+    }
 }

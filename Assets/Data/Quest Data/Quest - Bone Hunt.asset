@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Quest - Bone Hunt
   m_EditorClassIdentifier: 
   questSaveId: c99250cf8945a444faae935a484fb2fc
-  questName: Bone Hunt
-  description: It used to be a quiet place, just a pickaxe and a shovel. Now it's
-    bones and bother. I'd take care of them myself, but my knees aren't what they
-    used to be. Go knock a few of them back into the dirt for me, will you?
-  questGoal: ' - Eliminate skeletons:'
+  questType: 0
+  questName: "\u730E\u9AA8"
+  description: "\u8FD9\u91CC\u66FE\u7ECF\u662F\u4E2A\u5B89\u9759\u7684\u5730\u65B9\uFF0C\u53EA\u6709\u4E00\u628A\u9550\u548C\u4E00\u628A\u94F2\u5B50\u3002\u5982\u4ECA\u5374\u6EE1\u662F\u9AA8\u5934\u548C\u9EBB\u70E6\u3002\u6211\u672C\u60F3\u4EB2\u81EA\u6536\u62FE\u5B83\u4EEC\uFF0C\u53EF\u6211\u7684\u819D\u76D6\u4E0D\u4E2D\u7528\u4E86\u3002\u5E2E\u6211\u53BB\u628A\u90A3\u4E9B\u5BB6\u4F19\u6572\u56DE\u571F\u91CC\uFF0C\u884C\u5417\uFF1F"
+  questGoal: " - \u6D88\u706D\u9AB7\u9AC5:"
   questTargetId: enemy_skeleton
   requiredAmount: 2
+  itemToDeliver: {fileID: 0}
   rewardType: 0
   rewardItems:
   - itemData: {fileID: 11400000, guid: 37c0b3204301de74c9bfbc5950b936b8, type: 2}

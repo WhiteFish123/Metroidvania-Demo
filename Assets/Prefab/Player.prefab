@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3349978135386925590}
   - component: {fileID: 2162631860749119100}
   - component: {fileID: 6719829922639863954}
+  - component: {fileID: 3991378928118372545}
   m_Layer: 7
   m_Name: Skills_Holder
   m_TagString: Untagged
@@ -50,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillType: 0
   upgradeType: 0
-  cooldown: 3
+  cooldown: 0.4
 --- !u!114 &4551902753396204905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +155,22 @@ MonoBehaviour:
   healthToRestoreWithEcho: 0.05
   maxDomainSize: 20
   expandSpeed: 5
+--- !u!114 &3991378928118372545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322328406673452707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20591e65e0454554a9f14bf01e425f5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillType: 5
+  upgradeType: 0
+  cooldown: 0
+  maxExtraJumps: 1
 --- !u!1 &992403727232772354
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,10 +729,12 @@ MonoBehaviour:
   riseSpeed: 25
   riseMaxDistance: 3
   moveSpeed: 8
-  jumpForce: 12
-  wallJumpForce: {x: 6, y: 12}
+  jumpForce: 20
+  wallJumpForce: {x: 10, y: 20}
   inAirMoveMultiplier: 0.8
   wallSlideSlowMultiplier: 0.4
+  gravityScaleMultiplier: 1.25
+  maxFallSpeed: -20
   dashDuration: 0.25
   dashSpeed: 20
 --- !u!50 &4513476641289570102
@@ -733,7 +752,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0.1
   m_AngularDamping: 0.05
-  m_GravityScale: 3.5
+  m_GravityScale: 7
   m_Material: {fileID: 6200000, guid: 83548ec120b0e6047a807e0ec9b43368, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -805,11 +824,14 @@ MonoBehaviour:
     shockDamageScale: 1
     shockCharge: 0.4
   targetCheck: {fileID: 1942521675700236861}
-  targetCheckRadius: 1
+  targetCheckRadius: 1.2
   whatIsTarget:
     serializedVersion: 2
     m_Bits: 256
   counterRecovery: 0.4
+  whatIsCounterable:
+    serializedVersion: 2
+    m_Bits: 2304
 --- !u!114 &7021897015593389872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -849,6 +871,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631caecb7f19e63498abbfd4062eb048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  imageEchoInterval: 0.08
+  imageEchoPrefab: {fileID: 3013030631492103651, guid: 6fb5646cb6d638a478c3c567687e9539, type: 3}
   onDamageMaterial: {fileID: 2100000, guid: c92512a543c5a94499df3cc98251d3a9, type: 2}
   onDamageVfxDuration: 0.15
   hitVfxColor: {r: 1, g: 1, b: 1, a: 1}
@@ -857,8 +881,6 @@ MonoBehaviour:
   chillVfx: {r: 0.42352942, g: 0.69803923, b: 1, a: 1}
   burnVfx: {r: 1, g: 0, b: 0, a: 1}
   shockVfx: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  imageEchoInterval: 0.08
-  imageEchoPrefab: {fileID: 3013030631492103651, guid: 6fb5646cb6d638a478c3c567687e9539, type: 3}
 --- !u!114 &1050129719770367435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -874,14 +896,14 @@ MonoBehaviour:
   defaultStatSetup: {fileID: 11400000, guid: 8b4cb8613fb020444954a235eec851dd, type: 2}
   resources:
     maxHealth:
-      baseValue: 100
+      baseValue: 1000
       modifiers: []
     healthRegen:
       baseValue: 0
       modifiers: []
   offense:
     attackSpeed:
-      baseValue: 1
+      baseValue: 1.3
       modifiers: []
     damage:
       baseValue: 10

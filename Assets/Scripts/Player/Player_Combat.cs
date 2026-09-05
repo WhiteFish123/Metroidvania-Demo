@@ -23,7 +23,7 @@ public class Player_Combat : Entity_Combat
             }
 
         }
-
+        Debug.Log("反击结果: " + hasPerformedCounter);
         return hasPerformedCounter;
     }
 

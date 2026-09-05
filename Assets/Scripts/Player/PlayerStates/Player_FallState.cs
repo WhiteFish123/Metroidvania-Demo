@@ -6,6 +6,12 @@ public class Player_FallState : Player_AiredState
     {
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+        SetGravityScale(rb.gravityScale*player.gravityScaleMultiplier);
+        rb.linearVelocity=new Vector2(rb.linearVelocity.x,Mathf.Max(rb.linearVelocity.y,player.maxFallSpeed));
+    }
     public override void Update()
     {
         base.Update();
@@ -15,5 +21,10 @@ public class Player_FallState : Player_AiredState
 
         if (player.wallDetected)
             stateMachine.ChangeState(player.wallSlideState);
+    }
+    public override void Exit()
+    {
+        base.Exit();
+        SetGravityScale(rb.gravityScale/player.gravityScaleMultiplier);
     }
 }

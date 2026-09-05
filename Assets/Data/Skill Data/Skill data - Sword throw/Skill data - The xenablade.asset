@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cdfdfbc5df2c414e952a12e3fc10d6f, type: 3}
   m_Name: Skill data - The xenablade
   m_EditorClassIdentifier: 
-  displayName: The xenablade
-  description: The sword will bounce beetwen N targets, dealing damage on each bounce.
+  displayName: "\u56DE\u65CB\u5203"
+  description: "\u5251\u4F1A\u5728 N \u4E2A\u76EE\u6807\u4E4B\u95F4\u5F39\u5C04\uFF0C\u6BCF\u6B21\u5F39\u5C04\u9020\u6210\u4F24\u5BB3"
   icon: {fileID: -600305260, guid: 7ae0115109b4a6f42a4f7ad59397d09b, type: 3}
   cost: 2
   unlockedByDefault: 0

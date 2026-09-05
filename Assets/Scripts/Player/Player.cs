@@ -53,9 +53,15 @@ public class Player : Entity
     public float jumpForce = 5;
     public Vector2 wallJumpForce;
     [Range(0, 1)]
-    public float inAirMoveMultiplier = .7f; // Should be from 0 to 1;
+    public float inAirMoveMultiplier = .7f; //从0到1
+    public float jumpAirLerp=0.1f;
+    public float wallJumpLerp=0.1f;
+    
+    public float wallJumpBackBoost = 1.15f;//墙跳后退速度倍数
     [Range(0, 1)]
     public float wallSlideSlowMultiplier = .7f;
+    public float gravityScaleMultiplier = 1.25f;
+    public float maxFallSpeed=-20;
     [Space]
     public float dashDuration = .25f;
     public float dashSpeed = 20;

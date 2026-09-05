@@ -16,7 +16,7 @@ MonoBehaviour:
   speaker: {fileID: 11400000, guid: 655dd970fa3750548857e35128fd3d58, type: 2}
   textLine:
   - 
-  playerChoiceAnswer: Do you have something to trade?
+  playerChoiceAnswer: "\u4F60\u8FD9\u91CC\u6709\u4EC0\u4E48\u4E1C\u897F\u53EF\u4EE5\u4EA4\u6613\u5417\uFF1F"
   choiceLines: []
-  actionLine: Sure.take look!
+  actionLine: "\u5F53\u7136\uFF0C\u6211\u8FD9\u91CC\u4EC0\u4E48\u4E1C\u897F\u90FD\u6709"
   actionType: 2

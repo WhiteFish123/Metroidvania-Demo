@@ -38,7 +38,7 @@ public class Skill_Base : MonoBehaviour
 
 
 
-        player.ui.inGameUI.GetSkillSlot(skillType).SetupSkillSlot(skillData);
+        player.ui.inGameUI.GetSkillSlot(skillType)?.SetupSkillSlot(skillData);
         ResetCooldown();
     }
 
@@ -62,13 +62,13 @@ public class Skill_Base : MonoBehaviour
     protected bool OnCooldown() => Time.time < lastTimeUsed + cooldown;
     public void SetSkillOnCooldown()
     {
-        player.ui.inGameUI.GetSkillSlot(skillType).StartCooldown(cooldown);
+        player.ui.inGameUI.GetSkillSlot(skillType)?.StartCooldown(cooldown);
         lastTimeUsed = Time.time;
     }
     public void ReduceCooldownBy(float cooldownReduction) => lastTimeUsed = lastTimeUsed + cooldownReduction;
     public void ResetCooldown()
     {
-        player.ui.inGameUI.GetSkillSlot(skillType).ResetCooldown();
+        player.ui.inGameUI.GetSkillSlot(skillType)?.ResetCooldown();
         lastTimeUsed = Time.time - cooldown;
     }
 }

@@ -16,7 +16,7 @@ MonoBehaviour:
   speaker: {fileID: 11400000, guid: 655dd970fa3750548857e35128fd3d58, type: 2}
   textLine:
   - 
-  playerChoiceAnswer: I want to get my reward
+  playerChoiceAnswer: "\u6211\u6765\u62FF\u59D4\u6258\u7684\u60AC\u8D4F\u4E86"
   choiceLines: []
-  actionLine: Here you go lad,you deserve it
+  actionLine: "\u5E72\u5F97\u4E0D\u9519\u561B\uFF0C\u8FD9\u662F\u4F60\u7684\u62A5\u916C"
   actionType: 4
