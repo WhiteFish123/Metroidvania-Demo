@@ -20,7 +20,11 @@ public class Enemy_BattleState : EnemyState
         if(player == null)
             player = enemy.GetPlayerReference();
 
-        if (ShouldRetreat())
+        float dist = DistanceToPlayer();
+        bool shouldRetreat = dist < enemy.minRetreatDistance;
+        //Debug.Log($"[Retreat] {enemy.name} Enter BattleState | dist={dist:F2} | minRetreat={enemy.minRetreatDistance} | shouldRetreat={shouldRetreat}");
+
+        if (shouldRetreat)
         {
             ShortRetreat();
         }
@@ -30,7 +34,7 @@ public class Enemy_BattleState : EnemyState
     {
         float x=(enemy.retreatVelocity.x * enemy.activeSlowMultiplier) * -DirectionToPlayer();
         float y=enemy.retreatVelocity.y;
-
+        Debug.Log($"[Retreat] {enemy.name} ShortRetreat | retreatVelocity={enemy.retreatVelocity} | slowMultiplier={enemy.activeSlowMultiplier} | finalVelocity=({x:F2},{y:F2})");
         rb.linearVelocity = new Vector2(x, y);
         enemy.HandleFlip(DirectionToPlayer());
     }
