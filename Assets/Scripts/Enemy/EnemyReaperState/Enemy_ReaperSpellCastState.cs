@@ -1,0 +1,39 @@
+using UnityEngine;
+
+public class Enemy_ReaperSpellCastState : EnemyState
+{
+    private Enemy_Reaper enemyReaper;
+    public Enemy_ReaperSpellCastState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
+    {
+        enemyReaper=enemy as Enemy_Reaper;
+    }
+    public override void Enter()
+    {
+        base.Enter();
+        enemyReaper.SetVelocity(0,0);
+        enemyReaper.SetSpellCastPerformed(false);
+        enemyReaper.SetSpellCastOnCooldown();
+    }
+
+    public override void Update()
+    {
+        base.Update();
+
+        if(enemyReaper.spellCastPerformed)
+            anim.SetBool("spellCast_performed",true);
+
+        if(triggerCalled)
+        {
+            if(enemyReaper.shouldTeleport())//如果可以传送就进入传送状态
+                stateMachine.ChangeState(enemyReaper.reaperTeleportState);
+            else
+                stateMachine.ChangeState(enemyReaper.battleState);
+        }
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        anim.SetBool("spellCast_performed",false);
+    }
+}

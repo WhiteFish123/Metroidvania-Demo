@@ -10,7 +10,7 @@ public class Enemy_ReaperTeleportState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        enemyReaper.makeUntargetable(true);
+        enemyReaper.makeUntargetable(false);
     }
 
     public override void Update()
@@ -26,7 +26,10 @@ public class Enemy_ReaperTeleportState : EnemyState
 
         if(triggerCalled)
         {
-            stateMachine.ChangeState(enemyReaper.idleState);
+            if(enemyReaper.CanDoSpellCast())
+                stateMachine.ChangeState(enemyReaper.reaperSpellCastState);
+            else
+                stateMachine.ChangeState(enemyReaper.reaperBattleState);
         }
 
     }
@@ -34,6 +37,6 @@ public class Enemy_ReaperTeleportState : EnemyState
     public override void Exit()
     {
         base.Exit();
-        enemyReaper.makeUntargetable(false);
+        enemyReaper.makeUntargetable(true);
     }
 }

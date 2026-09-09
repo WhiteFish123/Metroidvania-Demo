@@ -61,7 +61,7 @@ public class Entity_Combat : MonoBehaviour
             sfx?.PlayAttackMiss();
     }
 
-    public void PerformAttackOnTarget(Transform target)//对单个敌人
+    public void PerformAttackOnTarget(Transform target,DamageScaleData damageScaleData=null)//对单个敌人
     {
         bool targetGotHit = false;
 
@@ -69,7 +69,9 @@ public class Entity_Combat : MonoBehaviour
 
         if (damageable == null)
             return; 
-        AttackData attackData = stats.GetAttackData(basicAttackScale);
+
+        DamageScaleData damageScale=damageScaleData==null? basicAttackScale:damageScaleData;
+        AttackData attackData = stats.GetAttackData(damageScale);
         Entity_StatusHandler statusHandler = target.GetComponent<Entity_StatusHandler>();
 
 
@@ -85,8 +87,8 @@ public class Entity_Combat : MonoBehaviour
         if (targetGotHit)
         {
             OnDoingPhysicalDamage?.Invoke(physicalDamage);
-        vfx.CreateOnHitVFX(target.transform,attackData.isCrit,element);
-                sfx?.PlayAttackHit();
+            vfx.CreateOnHitVFX(target.transform,attackData.isCrit,element);
+            sfx?.PlayAttackHit();
         }
 
         if (targetGotHit==false)

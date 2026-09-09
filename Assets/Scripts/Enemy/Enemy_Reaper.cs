@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy_Reaper : Enemy , ICounterable
@@ -7,9 +8,22 @@ public class Enemy_Reaper : Enemy , ICounterable
     public Enemy_ReaperBattleState reaperBattleState { get; private set; }
     public Enemy_ReaperTeleportState reaperTeleportState { get; private set; }
     public Enemy_ReaperAttackState reaperAttackState { get; private set; }
+    public Enemy_ReaperSpellCastState reaperSpellCastState { get; private set; }
 
     [Header("Reaper specifics")]
     public float maxBattleIdleTime=5;
+
+    [Header("Reaper SpellCast")]
+    [SerializeField]private DamageScaleData spellDamageScale;
+    [SerializeField]private GameObject spellCastPrefab;
+    [SerializeField]private int amountToCast=6;
+    [SerializeField]private float spellCastRate=1.2f;
+    [SerializeField]private float spellCastStateCooldown=10;
+    [SerializeField]private Vector2 playerOffsetPrediction;
+    public float lastTimeCastedSpells=float.NegativeInfinity;
+    public bool spellCastPerformed{get;private set;}
+    private Player playerScript;
+
     [Header("Reaper Teleport")]
     [SerializeField] private BoxCollider2D arenaBounds;
     [SerializeField] private float offsetCenterY=1.748f;
@@ -30,6 +44,7 @@ public class Enemy_Reaper : Enemy , ICounterable
         reaperBattleState = new Enemy_ReaperBattleState(this, stateMachine, "battle");
         reaperAttackState = new Enemy_ReaperAttackState(this, stateMachine, "attack");
         reaperTeleportState = new Enemy_ReaperTeleportState(this, stateMachine, "teleport");
+        reaperSpellCastState = new Enemy_ReaperSpellCastState(this, stateMachine, "spellCast");
         
         battleState = reaperBattleState;
 
@@ -45,14 +60,7 @@ public class Enemy_Reaper : Enemy , ICounterable
         stateMachine.Initialize(idleState);
 
     }
-    protected override void Update()
-    {
-        base.Update();
-        if(Input.GetKeyDown(KeyCode.V))
-        {
-            transform.position=FindTeleportPoint();
-        }
-    }
+   
 
     public void HandleCounter()
     {
@@ -61,6 +69,36 @@ public class Enemy_Reaper : Enemy , ICounterable
 
         stateMachine.ChangeState(stunnedState);
     }
+
+    override public void SpecialAttack()
+    {
+        StartCoroutine(CastSpelCol());
+    }
+
+    private IEnumerator CastSpelCol()
+    {
+        if(playerScript==null)
+            playerScript= player.GetComponent<Player>();
+
+        for(int i=0;i<amountToCast;i++)
+        {
+            bool playerMoving=playerScript.rb.linearVelocity.magnitude>0;
+            float xOffset=playerMoving?playerOffsetPrediction.x*playerScript.facingDir:0;
+            Vector3 spellPosition=player.transform.position+new Vector3(xOffset,playerOffsetPrediction.y);
+
+            Enemy_ReaperSpell spell
+                =Instantiate(spellCastPrefab,spellPosition,Quaternion.identity).GetComponent<Enemy_ReaperSpell>();
+           
+            spell.SetupSpell(combat,spellDamageScale);
+            yield return new WaitForSeconds(spellCastRate);
+        }
+        
+        SetSpellCastPerformed(true);
+    }
+
+    public void SetSpellCastPerformed(bool spellCastStatus)=>spellCastPerformed=spellCastStatus;
+    public void SetSpellCastOnCooldown()=>lastTimeCastedSpells=Time.time;
+    public bool CanDoSpellCast()=>Time.time>lastTimeCastedSpells+spellCastStateCooldown;
     public bool shouldTeleport()
     {
         if(Random.value<chanceToTeleport)
