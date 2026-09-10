@@ -105,6 +105,8 @@ public class Enemy : Entity
 
     public void TryEnterBattleState(Transform player)
     {
+        if(battleState==null)
+            return;
         if (stateMachine.currentState == battleState)
             return;
 

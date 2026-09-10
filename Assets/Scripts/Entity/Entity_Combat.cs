@@ -100,6 +100,14 @@ public class Entity_Combat : MonoBehaviour
         return Physics2D.OverlapCircleAll(targetCheck.position,targetCheckRadius, whatToDetect);
     }
 
+    public void PerformAttackWithRadius(float customRadius)
+    {
+        float originalRadius = targetCheckRadius;
+        targetCheckRadius = customRadius;
+        PerformAttack();
+        targetCheckRadius = originalRadius;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(targetCheck.position, targetCheckRadius);

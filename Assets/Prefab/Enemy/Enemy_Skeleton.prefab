@@ -857,7 +857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8227408368413302491
 Transform:
   m_ObjectHideFlags: 0
@@ -904,6 +904,8 @@ MonoBehaviour:
   questTargetId: enemy_skeleton
   battleMoveSpeed: 3
   attackDistance: 2
+  attackCooldown: 1
+  CanChasePlayer: 1
   battleTimeDuration: 5
   minRetreatDistance: 1
   retreatVelocity: {x: 5, y: 3}
@@ -1041,6 +1043,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2995eb4de6f6a5041b613e3c4e1ef311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  imageEchoInterval: 0.05
+  imageEchoPrefab: {fileID: 0}
   onDamageMaterial: {fileID: 2100000, guid: c92512a543c5a94499df3cc98251d3a9, type: 2}
   onDamageVfxDuration: 0.2
   hitVfxColor: {r: 0.5, g: 0.45990565, b: 0.45990565, a: 1}
@@ -1566,7 +1570,7 @@ RectTransform:
   m_Father: {fileID: 8638207431181072052}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.05999756, y: -0.026000023}
   m_SizeDelta: {x: -1.212, y: 5.167}
   m_Pivot: {x: 0.5, y: 0.5}
