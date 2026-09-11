@@ -69,7 +69,12 @@ public class Enemy_Reaper : Enemy , ICounterable
 
         stateMachine.ChangeState(stunnedState);
     }
-
+    public override void TryEnterBattleState(Transform player)
+    {
+        if(stateMachine.currentState==reaperSpellCastState)
+            return;
+        base.TryEnterBattleState(player);
+    }
     override public void SpecialAttack()
     {
         StartCoroutine(CastSpelCol());

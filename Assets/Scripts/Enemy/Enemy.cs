@@ -103,7 +103,7 @@ public class Enemy : Entity
         stateMachine.ChangeState(idleState);
     }
 
-    public void TryEnterBattleState(Transform player)
+    public virtual void TryEnterBattleState(Transform player)
     {
         if(battleState==null)
             return;

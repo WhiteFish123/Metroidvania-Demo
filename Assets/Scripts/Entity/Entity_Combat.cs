@@ -27,71 +27,54 @@ public class Entity_Combat : MonoBehaviour
 
     public void PerformAttack()
     {   
-        bool targetGotHit = false;
+        bool anyHit = false;
 
         foreach (var target in GetDetectedColliders(whatIsTarget))
         {
-            IDamageable damageable = target.GetComponent<IDamageable>();
-
-            if (damageable == null)
-                continue; // skip target, go to next target
-
             AttackData attackData = stats.GetAttackData(basicAttackScale);
-            Entity_StatusHandler statusHandler = target.GetComponent<Entity_StatusHandler>();
-
-
-            float physicalDamage = attackData.phyiscalDamage;
-            float elementalDamage = attackData.elementalDamage;
-            ElementType element = attackData.element;
-
-            targetGotHit = damageable.TakeDamage(physicalDamage, elementalDamage, element, transform);
-
-            if (element != ElementType.None)
-                statusHandler?.ApplyStatusEffect(element, attackData.effectData);
-
-            if (targetGotHit)
-            {
-                OnDoingPhysicalDamage?.Invoke(physicalDamage);
-                vfx.CreateOnHitVFX(target.transform,attackData.isCrit,element);
-                sfx?.PlayAttackHit();
-            }
+            if (ApplyDamageToTarget(target.transform, attackData))
+                anyHit = true;
         }
 
-        if (targetGotHit==false)
+        if (anyHit == false)
             sfx?.PlayAttackMiss();
     }
 
-    public void PerformAttackOnTarget(Transform target,DamageScaleData damageScaleData=null)//对单个敌人
+    private bool ApplyDamageToTarget(Transform target, AttackData attackData)
     {
-        bool targetGotHit = false;
-
         IDamageable damageable = target.GetComponent<IDamageable>();
 
         if (damageable == null)
-            return; 
+            return false;
 
-        DamageScaleData damageScale=damageScaleData==null? basicAttackScale:damageScaleData;
-        AttackData attackData = stats.GetAttackData(damageScale);
         Entity_StatusHandler statusHandler = target.GetComponent<Entity_StatusHandler>();
-
 
         float physicalDamage = attackData.phyiscalDamage;
         float elementalDamage = attackData.elementalDamage;
         ElementType element = attackData.element;
-
-        targetGotHit = damageable.TakeDamage(physicalDamage, elementalDamage, element, transform);
+        bool targetGotHit = damageable.TakeDamage(physicalDamage, elementalDamage, element, transform);
 
         if (element != ElementType.None)
             statusHandler?.ApplyStatusEffect(element, attackData.effectData);
 
         if (targetGotHit)
         {
-            OnDoingPhysicalDamage?.Invoke(physicalDamage);
-            vfx.CreateOnHitVFX(target.transform,attackData.isCrit,element);
+            OnDoingPhysicalDamage?.Invoke(attackData.phyiscalDamage);
+            vfx.CreateOnHitVFX(target.transform, attackData.isCrit, attackData.element);
             sfx?.PlayAttackHit();
         }
 
-        if (targetGotHit==false)
+        return targetGotHit;
+    }
+
+    public void PerformAttackOnTarget(Transform target, DamageScaleData damageScaleData = null)
+    {
+        DamageScaleData scale = damageScaleData ?? basicAttackScale;
+        AttackData attackData = stats.GetAttackData(scale);
+
+        bool hit = ApplyDamageToTarget(target, attackData);
+
+        if (hit == false)
             sfx?.PlayAttackMiss();
     }
 

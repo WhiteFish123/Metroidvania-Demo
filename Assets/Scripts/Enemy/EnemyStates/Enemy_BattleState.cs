@@ -34,7 +34,7 @@ public class Enemy_BattleState : EnemyState
     {
         float x=(enemy.retreatVelocity.x * enemy.activeSlowMultiplier) * -DirectionToPlayer();
         float y=enemy.retreatVelocity.y;
-        Debug.Log($"[Retreat] {enemy.name} ShortRetreat | retreatVelocity={enemy.retreatVelocity} | slowMultiplier={enemy.activeSlowMultiplier} | finalVelocity=({x:F2},{y:F2})");
+        //Debug.Log($"[Retreat] {enemy.name} ShortRetreat | retreatVelocity={enemy.retreatVelocity} | slowMultiplier={enemy.activeSlowMultiplier} | finalVelocity=({x:F2},{y:F2})");
         rb.linearVelocity = new Vector2(x, y);
         enemy.HandleFlip(DirectionToPlayer());
     }
@@ -49,13 +49,13 @@ public class Enemy_BattleState : EnemyState
             UpdateBattleTimer();
         }
 
-        if (BattleTimeIsOver())
+        if (CanExitBattle())
             stateMachine.ChangeState(enemy.idleState);
 
         if (WithinAttackRange() && enemy.PlayerDetected()&&CanAttack())
         {
             lastTimeAttacked = Time.time;
-            stateMachine.ChangeState(enemy.attackState);
+            stateMachine.ChangeState(GetAttackState());
         }
         else
         {
@@ -83,7 +83,8 @@ public class Enemy_BattleState : EnemyState
     protected void UpdateBattleTimer() => lastTimeWasInBattle = Time.time;
 
     protected bool BattleTimeIsOver() => Time.time > lastTimeWasInBattle + enemy.battleTimeDuration;
-
+    protected virtual bool CanExitBattle()=>BattleTimeIsOver();
+    protected virtual EnemyState GetAttackState()=>enemy.attackState;
     protected bool WithinAttackRange() => DistanceToPlayer() < enemy.attackDistance;
     protected bool ShouldRetreat() => DistanceToPlayer() < enemy.minRetreatDistance;
 

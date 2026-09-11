@@ -94,7 +94,12 @@ public class UI_TreeConnectHandler : MonoBehaviour
             Debug.Log("Amount of details should be same as amount of connections. - " + gameObject.name);
             return;
         }
-
-        UpdateConnections();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.delayCall += () =>
+        {
+            if (this != null)
+                UpdateConnections();
+        };
+#endif
     }
 }

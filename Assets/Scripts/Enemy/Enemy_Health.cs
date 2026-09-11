@@ -15,6 +15,7 @@ public class Enemy_Health : Entity_Health
     }
     public override bool TakeDamage(float damage, float elementalDamage,ElementType element, Transform damageDealer)
     {
+        //Debug.Log($"[{enemy.name}] 被攻击, 当前状态: {enemy.stateMachine.currentState}, 尝试进入Battle");
         if(canTakeDamage == false) 
             return false;
 
@@ -24,6 +25,7 @@ public class Enemy_Health : Entity_Health
             return false;
 
         if(damageDealer.GetComponent<Player>() != null)
+            Debug.Log($"[{enemy.name}] 被攻击, 尝试进入Battle");
             enemy.TryEnterBattleState(damageDealer);
 
         return true;    
