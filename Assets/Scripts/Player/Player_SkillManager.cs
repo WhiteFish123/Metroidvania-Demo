@@ -1,26 +1,25 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 public class Player_SkillManager : MonoBehaviour
 {
-    public Skill_Dash dash { get; private set; }
-    public Skill_Shard shard { get; private set; }
-    public Skill_SwordThrow swordThrow { get; private set; }
-    public Skill_TimeEcho timeEcho { get; private set; }
-    public Skill_DomainExpansion domainExpansion { get; private set; }
-    public Skill_DoubleJump doubleJump { get; private set; }
-
+    private Dictionary<SkillType, Skill_Base> skillDict;
+    public Skill_Dash dash => skillDict[SkillType.Dash] as Skill_Dash;
+    public Skill_Shard shard => skillDict[SkillType.TimeShard] as Skill_Shard;
+    public Skill_SwordThrow swordThrow => skillDict[SkillType.SwordThrow] as Skill_SwordThrow;
+    public Skill_TimeEcho timeEcho => skillDict[SkillType.TimeEcho] as Skill_TimeEcho;
+    public Skill_DomainExpansion domainExpansion => skillDict[SkillType.DomainExpansion] as Skill_DomainExpansion;
+    public Skill_DoubleJump doubleJump => skillDict[SkillType.Jump] as Skill_DoubleJump;
     public Skill_Base[] allSkills { get; private set; }
+    
 
     private void Awake()
     {
-        dash = GetComponentInChildren<Skill_Dash>();
-        shard = GetComponentInChildren<Skill_Shard>();
-        swordThrow = GetComponentInChildren<Skill_SwordThrow>();
-        timeEcho = GetComponentInChildren<Skill_TimeEcho>();
-        domainExpansion = GetComponentInChildren<Skill_DomainExpansion>();
-        doubleJump = GetComponentInChildren<Skill_DoubleJump>();
+        var skills = GetComponentsInChildren<Skill_Base>();
+        skillDict = new Dictionary<SkillType, Skill_Base>();
+        foreach (var skill in skills)
+            skillDict[skill.GetSkillType()] = skill;
         
-        allSkills = GetComponentsInChildren<Skill_Base>();
+        allSkills = skills;
     }
 
     public void ReduceAllSkillCooldownBy(float amount)
@@ -30,19 +29,5 @@ public class Player_SkillManager : MonoBehaviour
     }
 
     public Skill_Base GetSkillByType(SkillType type)
-    {
-        switch (type)
-        {
-            case SkillType.Dash: return dash;
-            case SkillType.TimeShard: return shard;
-            case SkillType.SwordThrow: return swordThrow;
-            case SkillType.TimeEcho: return timeEcho;
-            case SkillType.DomainExpansion: return domainExpansion;
-            case SkillType.Jump: return doubleJump;
-
-            default:
-                Debug.Log($"Skill type {type} is not implemented yet.");
-                return null;
-        }
-    }
+        => skillDict.TryGetValue(type, out var skill) ? skill : null;
 }

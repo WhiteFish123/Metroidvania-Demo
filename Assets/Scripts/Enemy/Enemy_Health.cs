@@ -25,7 +25,7 @@ public class Enemy_Health : Entity_Health
             return false;
 
         if(damageDealer.GetComponent<Player>() != null)
-            Debug.Log($"[{enemy.name}] 被攻击, 尝试进入Battle");
+            //Debug.Log($"[{enemy.name}] 被攻击, 尝试进入Battle");
             enemy.TryEnterBattleState(damageDealer);
 
         return true;    
