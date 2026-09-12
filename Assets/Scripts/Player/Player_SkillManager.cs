@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Net;
 public class Player_SkillManager : MonoBehaviour
 {
     private Dictionary<SkillType, Skill_Base> skillDict;
@@ -10,7 +11,6 @@ public class Player_SkillManager : MonoBehaviour
     public Skill_DomainExpansion domainExpansion => skillDict[SkillType.DomainExpansion] as Skill_DomainExpansion;
     public Skill_DoubleJump doubleJump => skillDict[SkillType.Jump] as Skill_DoubleJump;
     public Skill_Base[] allSkills { get; private set; }
-    
 
     private void Awake()
     {

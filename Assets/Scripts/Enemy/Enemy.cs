@@ -44,6 +44,7 @@ public class Enemy : Entity
     [SerializeField] private float playerCheckDistance = 10;
     public Transform player { get; private set; }
     public float activeSlowMultiplier { get; private set; } = 1;
+    private static int s_playerLayer=-1;
 
     public float GetMoveSpeed() => moveSpeed * activeSlowMultiplier;
     public float GetBattleMoveSpeed() => battleMoveSpeed * activeSlowMultiplier;
@@ -51,6 +52,8 @@ public class Enemy : Entity
     protected override void Awake()
     {
         base.Awake();
+        if(s_playerLayer==-1)
+            s_playerLayer=LayerMask.NameToLayer("Player");
         health = GetComponent<Enemy_Health>();
         stats = GetComponent<Entity_Stats>();
         combat=GetComponent<Entity_Combat>();
@@ -122,7 +125,7 @@ public class Enemy : Entity
         Destroy(gameObject,delay);
     }
 
-    public Transform GetPlayerReference()
+    public Transform GetPlayerReference()//缺陷：即便玩家不在检测范围内，每次获取Player引用都会做一次无效的RayCast，导致性能问题
     {
         if (player == null)
             player = PlayerDetected().transform;
@@ -135,7 +138,7 @@ public class Enemy : Entity
         RaycastHit2D hit =
             Physics2D.Raycast(playerCheck.position, Vector2.right * facingDir, playerCheckDistance, whatIsPlayer | whatIsGround);
 
-        if (hit.collider == null || hit.collider.gameObject.layer != LayerMask.NameToLayer("Player"))
+        if (hit.collider == null || hit.collider.gameObject.layer != s_playerLayer)
             return default;
 
         return hit;
