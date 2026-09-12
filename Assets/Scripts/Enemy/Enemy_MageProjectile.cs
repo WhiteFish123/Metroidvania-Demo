@@ -1,13 +1,10 @@
 using UnityEngine;
 
-public class Enemy_MageProjectile : MonoBehaviour
+public class Enemy_MageProjectile : Enemy_ProjectileBase
 {
-    private Entity_Combat combat;
     private Rigidbody2D rb;
-    private Collider2D col;
     private Animator anim;
     [SerializeField] private float arcHeight = 2f;
-    [SerializeField] private LayerMask whatCanCollideWith;
 
     public void SetupProjectile(Transform target,Entity_Combat combat)
     {
@@ -20,20 +17,28 @@ public class Enemy_MageProjectile : MonoBehaviour
         rb.linearVelocity=velocity;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    // private void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     if(((1<<collision.gameObject.layer)&whatCanCollideWith.value)!=0)
+    //     {
+    //         combat.PerformAttackOnTarget(collision.transform);
+
+    //         rb.linearVelocity=Vector2.zero;
+    //         rb.gravityScale=0;
+    //         anim.enabled=true;
+    //         col.enabled=false;
+    //         Destroy(gameObject,2f);
+    //     }
+    // }
+    protected override void OnHitTarget(Transform target)
     {
-        if(((1<<collision.gameObject.layer)&whatCanCollideWith.value)!=0)
-        {
-            combat.PerformAttackOnTarget(collision.transform);
-
-            rb.linearVelocity=Vector2.zero;
-            rb.gravityScale=0;
-            anim.enabled=true;
-            col.enabled=false;
-            Destroy(gameObject,2f);
-        }
+        combat.PerformAttackOnTarget(target);
+        rb.linearVelocity=Vector2.zero;
+        rb.gravityScale=0;
+        anim.enabled=true;
+        col.enabled=false;
+        Destroy(gameObject,2f);
     }
-
     private Vector2 CalculateBallisticVelocity(Vector2 start, Vector2 end)
     {
         //获取有效重力加速度（全局重力 × 此刚体的重力缩放）

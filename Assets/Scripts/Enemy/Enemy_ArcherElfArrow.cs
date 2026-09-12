@@ -1,12 +1,8 @@
 using UnityEngine;
 
-public class Enemy_ArcherElfArrow : MonoBehaviour,ICounterable
+public class Enemy_ArcherElfArrow : Enemy_ProjectileBase , ICounterable
 {
-    [SerializeField]private LayerMask whatIsTarget;
-
-    private Collider2D col;
     private Rigidbody2D rb;
-    private Entity_Combat combat;
     private Animator anim;
 
     public bool CanBeCountered => true;
@@ -23,16 +19,20 @@ public class Enemy_ArcherElfArrow : MonoBehaviour,ICounterable
         if(rb.linearVelocity.x<0)
             transform.Rotate(0,180,0);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(((1<<collision.gameObject.layer)&whatIsTarget.value)!=0)
-        {
-            combat.PerformAttackOnTarget(collision.transform);
-            StuckIntoTarget(collision.transform);
-        }
+    // private void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     if(((1<<collision.gameObject.layer)&whatIsTarget.value)!=0)
+    //     {
+    //         combat.PerformAttackOnTarget(collision.transform);
+    //         StuckIntoTarget(collision.transform);
+    //     }
         
+    // }
+    protected override void OnHitTarget(Transform target)
+    {
+        combat.PerformAttackOnTarget(target);
+        StuckIntoTarget(target);
     }
-
     private void StuckIntoTarget(Transform target)
     {
         rb.linearVelocity=Vector2.zero;
